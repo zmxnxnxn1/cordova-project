@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+    <link rel="stylesheet" type="text/css" href="css/cell.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+				getCellBoardModify(); // 기존의 글 가져오기
+			});
+			
+			// 기존에 작성한 글 가져오기
+			function getCellBoardModify() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardGetModify.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "boardSeq":boardSeq},
+					success:function(data) {
+						$("input[name=title]").val(data["result"][0]["title"]);
+						$("textarea[name=description]").val(data["result"][0]["description"]);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 글 작성 제출하기
+			function submitCellBoardUpdate() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				var title = $("input[name=title]").val();
+				var description = $("textarea[name=description]").val();
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardSubmitModify.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "boardSeq":boardSeq, "title":title, "description":description},
+					success:function(data) {
+						alert("글 수정을 완료하였습니다.");
+						
+						moveCellBoardPage("packet_cell_boardList.html");
+
+					},
+					error:function(data) {}
+				});
+			}
+			
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+   			
+   			<div class="cell-top-menu">
+   				<ul class="nav nav-tabs">
+	   				<li role="presentation" onclick="changeCellTopMenuActive(1)"><a href="#">정보</a></li>
+	   				<li role="presentation" onclick="changeCellTopMenuActive(2)" class="active"><a href="#">게시판</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(3)"><a href="#">채팅</a></li>
+					</ul>
+   			</div>
+   			
+   			<div style="width:90%; margin:0 auto; margin-top:20px;">
+   				<input type="text" name="title" placeholder="제목을 입력하세요." />
+   			</div>
+   			
+   			<div style="width:90%; margin:0 auto; margin-top:20px;">
+   				<textarea name="description" cols="80" rows="100" placeholder="이야기를 들려주세요." style=""></textarea>
+   			</div>
+   			
+   			<div style="width:90%; position:absolute; bottom:10%; margin-left:5%;">
+   				<button onclick="submitCellBoardUpdate()">작성완료</button>
+   			</div>
+				
+   			<div style="clear:both; height:80px;">&nbsp;</div>
+   			<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

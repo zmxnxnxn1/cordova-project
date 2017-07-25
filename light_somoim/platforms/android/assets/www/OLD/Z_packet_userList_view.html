@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>   
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/packet.js"></script>
+	  <title>Packet</title>
+	  <script>
+      
+      $(document).ready(function() {
+    	  settingApplication(); // 어플리케이션 기본 세팅
+    	  getUserList(); // 유저 리스트를 불러온다.
+	 		});
+      
+   		// 유저리스트 불러오기
+			function getUserList() {
+			
+			$.ajax ({
+					type:"POST",
+					url:jspFileRoute + "Z_packet_userList_view.jsp",
+					dataType:'JSON',
+					success:function(data) {
+						var userList = "";
+						for (var key in data) {
+							userList = userList + CreateHtmlUserList(data[key]['nickname'], data[key]['memo']);
+						}
+						$('.packet_userlist').html(userList);
+					},
+					error:function(data) {
+						alert('error');
+						console.log(data);
+					}
+				});	
+ 			 }
+   		
+   		// 유저리스트 HTML 코드를 만든다.
+   		function CreateHtmlUserList(nickname, memo) {
+   			var output;
+   			output  = '<div class="packet_user">';
+   			output += '<div class="packet_circle"><img src="img/logo.png"></div>';
+   			output += '<div class="packet_friendName">'+nickname+'</div>';
+   			output += '<div class="packet_friendDescription">'+memo+'</div>';
+   			output += '</div>';
+			
+   			return output;
+   		}
+   		
+      </script>
+    </head>
+    <body>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+				<span class="packet_userlist"></span><!--  packet_userlist -->
+				<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

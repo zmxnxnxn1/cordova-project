@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+			$(function(){
+				$.ajax({
+					url:jspFileRoute + "X_packet_cell_list.jsp",
+					type:"post",
+					data:{},
+					success:function(data){
+	
+						data=$.parseJSON(data);
+		
+						var Html="";
+						for(i=0; i<$(data['result']).size(); i++){
+							Html+="<div class='packet_user'>";
+							Html+="<div class=\"packet_circle\">";
+							Html+="<img src=\"img/logo.png\">";
+
+							Html+="</div>";
+							Html+="<div class=\"packet_friendName\" value='"+data['result'][i]['idx']+"' >";
+							Html+=decodeURIComponent(data['result'][i]['cellName']);
+							Html+="</div>";
+							Html+="<div class=\"packet_friendDescription\">";
+							Html+=data['result'][i]['cellDescription'];
+							Html+="</div>";
+							Html+="</div>";
+						}
+							$(".packet_userlist").html(Html);
+							$(".packet_friendName").bind("tap, click",function(){
+								var idx=$(this).attr('value');
+								location.href="packet_cell_view.html#"+idx;
+							});
+					},
+					error:function(){}
+				});
+
+			});
+			
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+			});
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		<div style="margin-top:10px;">
+   				<a href="javascript:movePage('packet_cell_create.html');" class="btn btn-lg btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+   					<span class="glyphicon glyphicon-calendar"></span>
+   					모임만들기
+   				</a>
+   			</div>
+   			<div class="packet_footer"></div>
+			<div class="packet_userlist"></div><!--  packet_userlist -->
+    	</div><!-- page -->
+    </body>
+
+ 
+ </html>
+    	

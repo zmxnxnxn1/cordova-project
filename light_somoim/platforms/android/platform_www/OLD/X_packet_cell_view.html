@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!--         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+ -->        
+ 		<meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta charset="utf-8">
+    	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+        <link rel="stylesheet" type="text/css" href="css/packet.css">
+        <link rel="stylesheet" type="text/css" href="css/apply.css">
+    	<script type="text/javascript" src="js/jquery.js"></script>
+    	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    	<script type="text/javascript" src="js/packet.js"></script>
+    	<style>
+    		html, body{
+    			height:100%;
+    		}
+    	</style>
+        <title>Packet</title>
+        <script>
+        
+        $(function(){
+			var hash = location.hash.replace(/^#/, '');
+	    	
+			$.ajax({
+				url:jspFileRoute + "X_packet_cell_view.jsp",
+				type:"post",
+				data:{"idx":hash},
+				success:function(data){
+					console.log(data);
+					data=$.parseJSON(data);
+					var Html="<b>"+data['result'][0]['cellName']+"</b>";
+					Html+="("+data['result'][0]['cellDescription']+")";
+					$(".packet_myDescription").html(Html);
+				}
+			});
+    		$(window).scroll(function(){
+    			var sTop=$(this).scrollTop();
+    			if(sTop>365){
+    				$(".packet_header").css("opacity","1");
+    				$(".packet_header").css("border-bottom","solid 1px orange");
+    			} else {
+    				$(".packet_header").css("opacity","0.6");
+    				$(".packet_header").css("border-bottom","0px");
+    			}
+    		});
+    		$(".packet_cell_day").bind("tap, click",function(){
+    			location.href="userlist.html";	
+    		});
+    		$(".packet_cellCreate").bind("tap, click",function(){
+    			location.href="packet_cell_create.html";
+    		});
+    		$(".packet_cellList").bind("tap, click",function(){
+    			location.href="packet_cell_list.html";
+    		});
+    		$(".packet_cellSearch").bind("tap, click",function(){
+    			location.href="packet_cell_search.html";
+    		});
+
+
+     		$(document).on("pagechange", function(){   
+    		    $('#meetCreate').on("swipeleft", function( event ){ 
+    		    });
+    		    $('#meetCreate').on("swipeup", function( event ){ 
+    		    	history.back('-1');	
+    		    });
+    		});
+        });
+        
+        $(document).ready(function() {
+        	settingApplication(); // 어플리케이션 기본 세팅
+    		});
+        </script>
+    </head>
+    <body>
+    	<div data-role="page" style="height:100%;">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		<div class="packet_main_img" >
+    			<div class="packet_myDescription">
+    					생은 길섶마다
+    					 행운을 숩겨놓았다
+    			</div>
+    		</div>
+			<div class="packet_content" style="padding-bottom:70px;">
+    			<div style="margin-top:10px;">
+    				<a href="packet_cell_create.html" class="btn btn-lg btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+    					<span class="glyphicon glyphicon-calendar"></span>
+    					모임만들기
+    				</a>
+    			</div>
+    			<div class="packet_cell">
+    			<h4 class="ui-bar ui-bar-a"> 
+    				<span style="font-size:15px; color:black;">
+    				2017년 1월 1차 패킷 정모
+    				</span>
+    				<span class="label label-default">10</span>
+    			</h4>
+    			<table width="100%">
+    				<tr>
+    					<td  class="packet_cell_day" width="30%" height="80px">
+			    			<div style="text-align:center;padding:3px; background-color:#f0ad4e;width:80%; color:white">토요일</div>
+			    			<div style="text-align:center; font-size:32px; line-height:60px; border:1px solid gray; box-sizing: border-box; width:80%; height:80%;">
+			    				15
+			    			</div>
+    					</td>
+    					<td style="padding:0;">
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-time"></span>
+    							2017/1/15 오전 10시	
+    						</div>
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-map-marker"></span>
+    							충창로 토즈
+    						</div>
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-usd"></span>
+    							5000원
+    						</div>
+    						<div style="font-size:18px; height:20px;"> 
+    						</div>
+    					</td>
+    					<td>
+    						<button data-role="none" class="btn btn-default btn-block"> 참석 </button>
+    						<button data-role="none" class="btn btn-block"> 수정 </button>
+    					</td>	
+    				</tr>
+    			</table>	
+    			</div>
+
+    			<div class="packet_cell">
+    			<h4 class="ui-bar ui-bar-a"> 
+    				<span style="font-size:15px; color:black;">
+    				2017년 1월 2차 패킷 정모
+    				</span>
+    				<span class="label label-default">10</span>
+    			</h4>
+    			<table width="100%">
+    				<tr>
+    					<td  class="packet_cell_day" width="30%" height="80px">
+			    			<div style="text-align:center;padding:3px; background-color:#f0ad4e;width:80%; color:white">토요일</div>
+			    			<div style="text-align:center; font-size:32px; line-height:60px; border:1px solid gray; box-sizing: border-box; width:80%; height:80%;">
+			    				21	
+			    			</div>
+    					</td>
+    					<td style="padding:0;">
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-time"></span>
+    							2017/1/15 오전 10시	
+    						</div>
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-map-marker"></span>
+    							충창로 토즈
+    						</div>
+    						<div style="font-size:14px; height:20px;"> 
+    							<span class="glyphicon glyphicon-usd"></span>
+    							5000원
+    						</div>
+    						<div style="font-size:18px; height:20px;"> 
+    						</div>
+    					</td>
+    					<td>
+    						<button data-role="none" class="btn btn-default btn-block"> 참석 </button>
+    						<button data-role="none" class="btn btn-block"> 수정 </button>
+    					</td>	
+    				</tr>
+    			</table>	
+    			</div>
+			</div>
+		   	<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+<!--     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+ -->
+ 
+ </html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Light Somoim</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/main.css" /> <!-- 기본 CSS -->
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+		<script src="js/main.js"></script> <!-- 기본 JS -->
+
+			<!-- [STR] alert 모달 -->
+				<link href="include/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+				<link href="include/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+				<link href="include/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+				<script type="text/javascript" src="include/js/jquery.modal.js"></script>
+			<!-- [END] alert 모달 -->
+
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+				defaultJspFileRoute(); // JSP 기본 경로 설정
+
+				setLocal("topMenuNumber", 1);
+				$('.registerMain').slideDown(2000);
+				$(".topText").text("환영합니다.");
+			});
+
+			// 처음시작 -> 회원가입 뷰
+			function registerLogin() {
+				$('.login').slideUp(500);
+				setTimeout("registerLoginAction()", 500);
+			}
+			// 회원가입 뷰 액션
+			function registerLoginAction() {
+				$(".topText").text("환영합니다.");
+				$(".topHeader").css("background-color", "green");
+				$('.registerMain').slideDown(500)
+			}
+
+			// 처음 시작 -> 로그인 뷰
+			function clickLogin() {
+				$('.registerMain').slideUp(500);
+				setTimeout("clickLoginAction()", 500);
+			}
+			// 로그인 뷰 액션
+			function clickLoginAction() {
+				$(".topText").text("로그인");
+				$(".topHeader").css("background-color", "#0044CC");
+				$('.login').slideDown(500)
+			}
+			
+			
+			// 회원가입 서브화면 불러오기
+			function callRegisterSub() {
+				$('.registerMain').fadeOut(1000);
+				setTimeout("$('.registerSub').slideDown(1000)", 1000);
+			}
+
+			// 처음화면 불러오기
+			function callBeginApp() {
+				$(".login").css("display", "none");
+				$(".registerMain").css("display", "none");
+				$(".registerSub").css("display", "none");
+				$(".beginApp").css("display", "block");
+				$(".topText").text("가볍다 소모임");
+			}
+
+			// 로그인
+			function checkLogin() {
+				
+				var loginId = $("input[name=loginId]").val();
+				var loginPw = $("input[name=loginPw]").val();
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_joinApp_login.jsp",
+					dataType:'JSON',
+					data:{"loginId":loginId, "loginPw":loginPw},
+					success:function(data) {
+						if (data["result"] == 0) {
+							modal({
+								type: 'error',
+								title: '로그인',
+								text: "닉네임 또는 비밀번호를 다시 확인하여 주십시오."
+							}); // End of modal
+							$("input[name=loginPw]").val('');
+						} else {
+							modal({
+								type: 'success',
+								title: '로그인',
+								text: "로그인 성공",
+								callback: function(result) {
+									setLocal("userKey", data["result"]);
+									$('.login').slideUp(2000);
+									setTimeout("history.back()", 2000);
+								}
+							}); // End of modal;					
+						}
+					} // End of success
+				});
+			}
+
+			// 회원가입 - Main
+			function registerMain() {
+
+				var regId = $("input[name=regId]").val();
+				var regPw = $("input[name=regPw]").val();
+
+				if (!checkRegisterMain(regId, regPw)) return;
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_joinApp_insertMain.jsp",
+					dataType:'JSON',
+					data:{"regId":regId, "regPw":regPw},
+					success:function(data) {
+						if (data["userKey"] == 0) { // 아이디가 중복일 경우
+							modal({
+								type: 'error',
+								title: '회원가입',
+								text: "닉네임이 중복됩니다. 다시 입력하여 주십시오."
+							}); // End of modal;		
+							$("input[name=regId]").focus();
+						} else {
+							setLocal("userKey", data["userKey"]);
+							callRegisterSub();
+						}
+					}
+				});
+			}
+
+			// 회원가입 폼체크 - Main
+			function checkRegisterMain(regId, regPw) {
+				if ( !regId ) {
+					alert("아이디를 입력하십시오.");
+					$("input[name=regId]").focus();
+					return;
+				}
+				if ( !regPw ) {
+					alert("비밀번호를 입력하십시오.");
+					$("input[name=regPw]").focus();
+					return;
+				}
+				if ( regId.length > 20 ) {
+					alert("아이디는 20자를 넘을 수 없습니다.");
+					$("input[name=regId]").focus();
+					return;
+				}
+				if ( regPw.length > 20 ) {
+					alert("비밀번호는 20자를 넘을 수 없습니다.");
+					$("input[name=regPw]").focus();
+					return;
+				}
+
+				return true;
+			}
+			
+			// 회원가입 - Sub 
+			function registerSub() {
+
+				var userKey = getLocal("userKey");
+				var subAge = $("input[name=subAge]").val();
+				var subSex = $("select[name=subSex]").val();
+
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_joinApp_insertSub.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "subAge":subAge, "subSex":subSex},
+					success:function(data) {
+						if (data["result"] == 0) { // 정상 가입처리일경우
+							modal({
+								type: 'success',
+								title: '회원가입',
+								text: "가입이 완료되었습니다.",
+								callback: function(result) {
+									$('.registerSub').slideUp(1000);
+									setTimeout("history.back()", 1000);
+								}
+							}); // End of modal;
+						}
+					}
+				});
+			}
+
+			// 다음에 작성
+			function afterRegisterSub() {
+
+				history.back();
+			}
+
+		</script>
+
+	</head>
+	<body>
+		
+		<div data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="topHeader" style="background-color:green;">
+				<h1 class="topText">가볍다 소모임</h1>
+			</div>
+			<div data-role="content" data-theme="a">
+
+				<!-- [STR] 앱 시작 -->
+				<div class="beginApp" style="display:none;">
+				</div>
+				<!-- [END] 앱 시작 -->
+
+				<!-- [STR] 로그인 -->
+				<div class="login" style="display:none;">
+					<div data-role="fieldcontain">
+						<label for="name"><b>닉네임</b></label>
+						<input type="text" name="loginId" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name"><b>비밀번호</b></label>
+						<input type="password" name="loginPw" />
+					</div>
+
+					<div>
+						<a href="javascript:checkLogin();" data-role="button" data-theme="b" data-icon="user">로그인</a>
+						<a href="javascript:registerLogin()" data-role="button" data-theme="d" data-icon="action">회원가입</a>
+					</div>
+				</div>
+				<!-- [END] 로그인 -->
+
+				<!-- [STR] 회원가입 Main -->
+				<div class="registerMain" style="display:none">
+
+					<div data-role="fieldcontain">
+						<label for="name">닉네임</label>
+						<input type="text" name="regId" />
+					</div>
+
+					<div data-role="fieldcontain" style="clear:both;">
+						<label for="name">비밀번호</label>
+						<input type="password" name="regPw" />
+					</div>
+
+					<div>
+						<a href="javascript:registerMain();" data-role="button" data-theme="d" data-icon="action">가입합니다.</a>
+						<a href="javascript:clickLogin()" data-role="button" data-theme="b" data-icon="user">로그인</a>
+					</div>
+				</div>
+				<!-- [END] 회원가입 Main -->
+
+				<!-- [STR] 회원가입 Sub -->
+				<div class="registerSub" style="display:none">
+
+					<div data-role="fieldcontain">
+						<label for="slider2">성별</label>
+						<select name="subSex" data-role="slider">
+							<option value="1">남</option>
+							<option value="2">여</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="slider">나이</label>
+					 	<input type="range" name="subAge" value="27" min="0" max="100" data-highlight="true"  />
+					</div>
+
+					<div>
+						<a href="javascript:registerSub();" data-role="button" data-theme="d" data-icon="check">작성 완료</a>
+					</div>
+
+				</div>
+				<!-- [END] 회원가입 Sub -->
+
+			
+				<hr style="margin-top:1.0em;" />
+
+				
+
+			</div>
+		</div>
+	</body>
+</html>

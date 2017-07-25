@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+    <link rel="stylesheet" type="text/css" href="css/cell.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+				callCellListMoim(); // 모임 리스트 불러오기
+			});
+			
+			// 모임 탑 메뉴의 active 상태를 변경한다.
+			function changeCellTopMenuActive(obj, type) {
+				$(".cell-top-menu > ul > li").removeClass("active");
+				$(obj).attr('class','active');
+			}
+			
+			
+			// 모임 리스트를 불러온다.
+			function callCellListMoim() {
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_list.jsp",
+					dataType:'JSON',
+					success:function(data) {
+						createCellListHtml(data);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 리스트 데이터를 HTML 코드로 만든다.
+			function createCellListHtml(data) {
+				var Html = "";
+				for (key in data["result"]) {
+					
+					Html += '<a href="javascript:movePage(\'packet_cell_home.html#'+data["result"][key]["seq"]+'\')">';
+					Html += '	<div class="cell-div-box">';
+					Html += '		<div class="cell-img">';
+					Html += '			<span><img src="img/logo.png" /></span>';
+					Html += '		</div>';
+					Html += '		<div class="cell-user-count"><span class="font-color-orange">'+data["result"][key]["userCount"]+'</span>명</div>';
+					Html += '		<div class="cell-category font-color-orange">'+data["result"][key]["categoryName"]+'</div>';
+					Html += '		<div class="cell-name">'+data["result"][key]["cellName"]+'</div>';
+					Html += '	</div>';
+					Html += '</a>';
+					
+					$(".cell-list").html(Html);
+				}
+			}
+			
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		
+    		<div>
+   				<a href="javascript:movePage('packet_cell_create.html');" class="btn btn-lg btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+   					<span class="glyphicon glyphicon-calendar"></span> 모임만들기
+   				</a>
+   			</div>
+   			
+   			<div class="cell-top-menu">
+   				<ul class="nav nav-tabs">
+	   				<li role="presentation" onclick="changeCellTopMenuActive(this, 1)" class="active"><a href="#">모임</a></li>
+	   				<li role="presentation" onclick="changeCellTopMenuActive(this, 2)"><a href="#">정모</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(this, 3)"><a href="#">신규</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(this, 4)"><a href="#">지역</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(this, 5)"><a href="#">홍보</a></li>
+					</ul>
+   			</div>
+   			
+   			<div class="cell-list"></div> <!-- 리스트 -->
+   			
+   			<div class="packet_footer"></div>
+   			
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

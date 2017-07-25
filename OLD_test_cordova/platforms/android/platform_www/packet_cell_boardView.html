@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+    <link rel="stylesheet" type="text/css" href="css/cell.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+				callBoardView(); // 게시글 불러오기
+			});
+			
+			// 게시글 불러오기
+			function callBoardView() {
+				getBoardView() // 게시글 본문
+				getReplyList() // 리플 리스트
+			}
+			
+			// 게시글 본문 불러오기
+			function getBoardView() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardView.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "boardSeq":boardSeq},
+					success:function(data) {
+						console.log(data);
+
+						var Html = "";
+						
+						Html += '<div style="width:100%; background-color:white; border-top:1px solid gray; border-bottom:1px solid gray; padding:10px; color:black; ">';
+						Html += '	<div>';
+						Html += '		<span><img src="img/logo.png" style="width:60px;" /></span>';
+						Html += '		<span style="font-weight:bold; margin-left:5px;">'+data["result"][0]["reg_name"]+'</span>';
+						Html += '		<span style="font-size:0.9em; color:gray; margin-left:5px;">'+data["result"][0]["reg_date"]+'</span>';
+						if (data["writer"] || data["board_admin"]) {
+							Html += '<span style="float:right; color:gray; margin:24px; color:black;">';
+							Html += '	<select name="boardControlSelectBox" seq="'+data["result"][0]["seq"]+'"onchange="boardControl(this)" style="font-size:0.9em">';
+							Html += '		<option value="0" selected>관리</option>';
+							if (data["writer"]) {
+								Html += '		<option value="modify">수정</option>';
+							}
+							Html += '		<option value="delete">삭제</option>';
+							Html += '	</select>';	
+							Html += '</span>';
+						}
+						
+						Html += '	</div>';
+						Html += '	<hr style="margin-top:20px; margin-bottom:10px;" />';
+						Html += '	<div style="font-weight:bold">'+data["result"][0]["title"]+'</div>';
+						Html += '	<hr style="margin-top:10px; margin-bottom:10px;" />';
+						Html += '	<div>'+data["result"][0]["description"]+'</div>';
+						Html += '</div>';
+						
+						$("#cellBoardMain").html(Html);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 멤버 관리
+			function boardControl(obj) {
+				if (obj.value == 0) return;
+				seq = $(obj).attr("seq");
+				
+				obj.value == "modify" ? moveCellBoardPage("packet_cell_boardModify.html") : ""; // 게시글 수정
+				obj.value == "delete" ? deleteCellBoard(seq) : ""; // 게시글 삭제
+			}
+			
+			// 게시글 삭제
+			function deleteCellBoard(seq) {
+				
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardDelete.jsp",
+					dataType:'JSON',
+					data:{"boardSeq":boardSeq},
+					success:function(data) {
+						if(!confirm("정말로 삭제하시겠습니까?")) return;
+						
+						alert("삭제를 완료하였습니다.");
+						moveCellBoardPage("packet_cell_boardList.html");
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 리플리스트 불러오기
+			function getReplyList() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_replyList.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "boardSeq":boardSeq},
+					success:function(data) {
+						
+						var Html = "";
+						for (key in data["result"]) {
+							Html += '<div style="width:95%; margin:0 auto; padding:10px; color:black; margin-top:5px;">';
+							Html += '	<div>';
+							Html += '		<span style="font-weight:bold;">'+data["result"][key]["reg_name"]+'</span>';
+							Html += '		<span style="font-size:0.9em; color:gray;">'+data["result"][key]["reg_date"]+'</span>';
+							if (data["board_admin"]) { // 삭제 권한이 있을경우
+								Html += '		<span style="float:right;"><button onclick="replyDelete('+data["result"][key]["seq"]+')">삭제</button></span>';
+							}
+							Html += '	</div>';
+							Html += '	<div style="margin-top:5px;">'+data["result"][key]["description"]+'</div>';
+							Html += '</div>';
+						}
+						
+						$("#cellBoardReply").html(Html);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 리플 삭제
+			function replyDelete(seq) {
+				if (!confirm('정말로 삭제하시겠습니까?')) return;
+				
+				var replySeq = seq; // 리플 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_replyDelete.jsp",
+					dataType:'JSON',
+					data:{"replySeq":replySeq},
+					success:function(data) {
+						alert('삭제를 완료하였습니다.');
+						callBoardView();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 리플 등록
+			function insertReply() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var boardSeq = getBoardSeq(); // 게시글 seq
+				var replyDescription = $("input[name=reply_des]").val();
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_replyInsert.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "boardSeq":boardSeq, "replyDescription":replyDescription},
+					success:function(data) {
+						callBoardView();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+   			
+   			<div class="cell-top-menu">
+   				<ul class="nav nav-tabs">
+	   				<li role="presentation" onclick="changeCellTopMenuActive(1)"><a href="#">정보</a></li>
+	   				<li role="presentation" onclick="changeCellTopMenuActive(2)" class="active"><a href="#">게시판</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(3)"><a href="#">채팅</a></li>
+					</ul>
+   			</div>
+   			
+				<div id="cellBoardMain"></div> <!-- 게시글 본문 -->
+				
+				<div id="cellBoardReply"></div> <!-- 리플리스트 -->
+				
+				<hr />
+				<div style="width:100%; background-color:darkgray;">
+					<div style="width:95%; margin:0 auto; padding:3px;">
+						<div style="width:75%; margin-left:5px; float:left;"><input type="text" name="reply_des" /></div>
+						<div style="width:20%; margin-left:10px; float:left;">
+							<button style="height:37px; line-height:15px;" onclick="insertReply()">전송</button>
+						</div>
+						<div style="clear:both;"></div>
+					</div>					
+				</div>
+   			
+   			<div style="clear:both; height:80px;">&nbsp;</div>
+   			<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

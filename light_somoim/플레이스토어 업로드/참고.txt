@@ -1,0 +1,8 @@
+keytool -genkey -v -keystore XXXX.keystore -alias XXXX -keyalg RSA -keysize 2048 -validity 10000
+
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore 积己等APK颇老疙 EL2A
+
+zipalign -v 4 android-release-unsigned.apk kjsomim.APK
+
+C:\Users\GIGABYTE\AppData\Local\Android\android-sdk\build-tools\25.0.2

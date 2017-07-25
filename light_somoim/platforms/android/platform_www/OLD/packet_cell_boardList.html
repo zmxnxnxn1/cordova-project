@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+    <link rel="stylesheet" type="text/css" href="css/cell.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+				callBoardHome(); // 모임 게시판
+			});
+			
+			// 모임 게시판 불러오기
+			function callBoardHome() {
+				getBoardList() // 게시글 리스트
+			}
+			
+			// 게시글 리스트를 불러온다.
+			function getBoardList() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardList.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+
+						var clickEvent;
+						data["board_read"] == 1 ? clickEvent = "moveCellBoardView" : clickEvent = "alert('멤버가 아니면 글을 볼 수 없습니다.')";
+						
+						// 게시글 리스트를 HTML 코드로 만든다.
+						var Html = "";
+						for (key in data["result"]) {
+							Html += '<a href="javascript:'+clickEvent+'('+data["result"][key]["seq"]+')'+'">';
+							Html += '<div style="width:90%; background-color:white; margin:0 auto; border:1px solid gray; padding:10px; color:black; border-style: dashed; margin-top:15px;">';
+							Html += '	<div>';
+							Html += '		<span style="font-weight:bold;">'+data["result"][key]["reg_name"]+'</span>';
+							Html += '		<span style="font-size:0.9em; color:gray;">'+data["result"][key]["reg_date"]+'</span>';
+							Html += '		<span class="glyphicon glyphicon-comment" style="margin-left:10px; font-size:0.9em; color:gray"></span>';
+							Html += '		<span style="font-size:0.9em; color:gray;">'+data["result"][key]["reply_count"]+'</span>';
+							Html += '	</div>';
+							Html += '	<hr style="margin-top:10px; margin-bottom:10px;" />';
+							Html += '	<div style="font-weight:normal">'+data["result"][key]["title"]+'</div>';
+							Html += '</div>';
+							Html += '</a>';
+						}
+						
+						$("#cellBoardList").html(Html);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 게시글로 이동
+			function moveCellBoardView(boardSeq) {
+				
+				// 로컬저장소에 boardSeq 값을 넣는다.
+				setBoardSeq(boardSeq);
+				
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				movePage("packet_cell_boardView.html#"+cellSeq);
+			}
+			
+			// 글쓰기 권한이 있는지 확인 후 글쓰기 화면으로 이동한다.
+			function checkCellBoardWriteGrade() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_boardWriteCheck.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+							if (data["board_read"] == 0) {
+								alert("글쓰기 권한이 없습니다.");
+								return;
+							}
+							
+							moveCellBoardPage("packet_cell_boardWrite.html");
+					},
+					error:function(data) {}
+				});
+			}
+			
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+   			
+   			<div class="cell-top-menu">
+   				<ul class="nav nav-tabs">
+	   				<li role="presentation" onclick="changeCellTopMenuActive(1)"><a href="#">정보</a></li>
+	   				<li role="presentation" onclick="changeCellTopMenuActive(2)" class="active"><a href="#">게시판</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(3)"><a href="#">채팅</a></li>
+					</ul>
+   			</div>
+   			
+				<div style="margin-top:5px;">
+   				<a href="javascript:checkCellBoardWriteGrade()" class="btn btn-lg btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+   					글쓰기<span class="glyphicon glyphicon-pencil" style="margin-left:10px;"></span>
+   				</a>
+   			</div>
+   			
+   			<div id="cellBoardList"></div> <!-- 모임 게시글 -->
+   			
+   			
+   			
+   			<div style="clear:both; height:80px;">&nbsp;</div>
+   			<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

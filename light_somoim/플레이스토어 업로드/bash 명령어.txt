@@ -1,0 +1,1230 @@
+
+GIGABYTE@EL MINGW32 ~/Desktop
+$ cd d:
+
+GIGABYTE@EL MINGW32 /d
+$ ls
+cd '$RECYCLE.BIN'/  Backup/     Develop/  'RPG MV'/                     글통/
+Adobe/           DambiNote/  htdocs/   'System Volume Information'/  '모앱 개발과정 자료들'/
+Architect/       Design/     Java/     Utility/                      이미지/
+
+GIGABYTE@EL MINGW32 /d
+$ cd  Java/
+
+GIGABYTE@EL MINGW32 /d/Java
+$ cd Cordova/
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova
+$ ls
+BACKUP_light_somoim/  demo/  light_somoim/  test_cordova/
+c
+GIGABYTE@EL MINGW32 /d/Java/Cordova
+$ cd light_somoim/
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ ls
+config.xml  hooks/  platforms/  plugins/  www/
+c
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ cordova run
+
+You have been opted out of telemetry. To change this, run: cordova telemetry on.
+ANDROID_HOME=C:\Users\GIGABYTE\AppData\Local\Android\android-sdk
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_111
+Subproject Path: CordovaLib
+Starting a new Gradle Daemon for this build (subsequent builds will be faster).
+Incremental java compilation is an incubating feature.
+:preBuild UP-TO-DATE
+:preDebugBuild UP-TO-DATE
+:checkDebugManifest
+:CordovaLib:preBuild UP-TO-DATE
+:CordovaLib:preDebugBuild UP-TO-DATE
+:CordovaLib:checkDebugManifest
+:CordovaLib:prepareDebugDependencies
+:CordovaLib:compileDebugAidl UP-TO-DATE
+:CordovaLib:compileDebugNdk UP-TO-DATE
+:CordovaLib:compileLint UP-TO-DATE
+:CordovaLib:copyDebugLint UP-TO-DATE
+:CordovaLib:mergeDebugShaders UP-TO-DATE
+:CordovaLib:compileDebugShaders UP-TO-DATE
+:CordovaLib:generateDebugAssets UP-TO-DATE
+:CordovaLib:mergeDebugAssets UP-TO-DATE
+:CordovaLib:mergeDebugProguardFiles UP-TO-DATE
+:CordovaLib:packageDebugRenderscript UP-TO-DATE
+:CordovaLib:compileDebugRenderscript UP-TO-DATE
+:CordovaLib:generateDebugResValues UP-TO-DATE
+:CordovaLib:generateDebugResources UP-TO-DATE
+:CordovaLib:packageDebugResources UP-TO-DATE
+:CordovaLib:processDebugManifest UP-TO-DATE
+:CordovaLib:generateDebugBuildConfig UP-TO-DATE
+:CordovaLib:processDebugResources UP-TO-DATE
+:CordovaLib:generateDebugSources UP-TO-DATE
+:CordovaLib:incrementalDebugJavaCompilationSafeguard UP-TO-DATE
+:CordovaLib:compileDebugJavaWithJavac UP-TO-DATE
+:CordovaLib:processDebugJavaRes UP-TO-DATE
+:CordovaLib:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+:CordovaLib:transformClassesAndResourcesWithSyncLibJarsForDebug UP-TO-DATE
+:CordovaLib:mergeDebugJniLibFolders UP-TO-DATE
+:CordovaLib:transformNative_libsWithMergeJniLibsForDebug UP-TO-DATE
+:CordovaLib:transformNative_libsWithSyncJniLibsForDebug UP-TO-DATE
+:CordovaLib:bundleDebug UP-TO-DATE
+:prepareAndroidCordovaLibUnspecifiedDebugLibrary UP-TO-DATE
+:prepareDebugDependencies
+:compileDebugAidl UP-TO-DATE
+:compileDebugRenderscript UP-TO-DATE
+:generateDebugBuildConfig UP-TO-DATE
+:generateDebugResValues UP-TO-DATE
+:generateDebugResources UP-TO-DATE
+:mergeDebugResources UP-TO-DATE
+:processDebugManifest UP-TO-DATE
+:processDebugResources UP-TO-DATE
+:generateDebugSources UP-TO-DATE
+:incrementalDebugJavaCompilationSafeguard UP-TO-DATE
+:compileDebugJavaWithJavac UP-TO-DATE
+:compileDebugNdk UP-TO-DATE
+:compileDebugSources UP-TO-DATE
+:mergeDebugShaders UP-TO-DATE
+:compileDebugShaders UP-TO-DATE
+:generateDebugAssets UP-TO-DATE
+:mergeDebugAssets
+:transformClassesWithDexForDebug UP-TO-DATE
+:mergeDebugJniLibFolders UP-TO-DATE
+:transformNative_libsWithMergeJniLibsForDebug UP-TO-DATE
+:processDebugJavaRes UP-TO-DATE
+:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+:validateSigningDebug
+:packageDebug
+:assembleDebug
+:cdvBuildDebug
+
+BUILD SUCCESSFUL
+
+Total time: 13.028 secs
+Built the following apk(s):
+        D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+ANDROID_HOME=C:\Users\GIGABYTE\AppData\Local\Android\android-sdk
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_111
+No target specified, deploying to device 'LGF320Ld15907c1'.
+Skipping build...
+Built the following apk(s):
+        D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+Using apk: D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+Package name: com.lightsomoim.www
+LAUNCH SUCCESS
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ cordova run
+
+You have been opted out of telemetry. To change this, run: cordova telemetry on.
+ANDROID_HOME=C:\Users\GIGABYTE\AppData\Local\Android\android-sdk
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_111
+Subproject Path: CordovaLib
+Incremental java compilation is an incubating feature.
+:preBuild UP-TO-DATE
+:preDebugBuild UP-TO-DATE
+:checkDebugManifest
+:CordovaLib:preBuild UP-TO-DATE
+:CordovaLib:preDebugBuild UP-TO-DATE
+:CordovaLib:checkDebugManifest
+:CordovaLib:prepareDebugDependencies
+:CordovaLib:compileDebugAidl UP-TO-DATE
+:CordovaLib:compileDebugNdk UP-TO-DATE
+:CordovaLib:compileLint UP-TO-DATE
+:CordovaLib:copyDebugLint UP-TO-DATE
+:CordovaLib:mergeDebugShaders UP-TO-DATE
+:CordovaLib:compileDebugShaders UP-TO-DATE
+:CordovaLib:generateDebugAssets UP-TO-DATE
+:CordovaLib:mergeDebugAssets UP-TO-DATE
+:CordovaLib:mergeDebugProguardFiles UP-TO-DATE
+:CordovaLib:packageDebugRenderscript UP-TO-DATE
+:CordovaLib:compileDebugRenderscript UP-TO-DATE
+:CordovaLib:generateDebugResValues UP-TO-DATE
+:CordovaLib:generateDebugResources UP-TO-DATE
+:CordovaLib:packageDebugResources UP-TO-DATE
+:CordovaLib:processDebugManifest UP-TO-DATE
+:CordovaLib:generateDebugBuildConfig UP-TO-DATE
+:CordovaLib:processDebugResources UP-TO-DATE
+:CordovaLib:generateDebugSources UP-TO-DATE
+:CordovaLib:incrementalDebugJavaCompilationSafeguard UP-TO-DATE
+:CordovaLib:compileDebugJavaWithJavac UP-TO-DATE
+:CordovaLib:processDebugJavaRes UP-TO-DATE
+:CordovaLib:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+:CordovaLib:transformClassesAndResourcesWithSyncLibJarsForDebug UP-TO-DATE
+:CordovaLib:mergeDebugJniLibFolders UP-TO-DATE
+:CordovaLib:transformNative_libsWithMergeJniLibsForDebug UP-TO-DATE
+:CordovaLib:transformNative_libsWithSyncJniLibsForDebug UP-TO-DATE
+:CordovaLib:bundleDebug UP-TO-DATE
+:prepareAndroidCordovaLibUnspecifiedDebugLibrary UP-TO-DATE
+:prepareDebugDependencies
+:compileDebugAidl UP-TO-DATE
+:compileDebugRenderscript UP-TO-DATE
+:generateDebugBuildConfig UP-TO-DATE
+:generateDebugResValues UP-TO-DATE
+:generateDebugResources UP-TO-DATE
+:mergeDebugResources UP-TO-DATE
+:processDebugManifest UP-TO-DATE
+:processDebugResources UP-TO-DATE
+:generateDebugSources UP-TO-DATE
+:incrementalDebugJavaCompilationSafeguard UP-TO-DATE
+:compileDebugJavaWithJavac UP-TO-DATE
+:compileDebugNdk UP-TO-DATE
+:compileDebugSources UP-TO-DATE
+:mergeDebugShaders UP-TO-DATE
+:compileDebugShaders UP-TO-DATE
+:generateDebugAssets UP-TO-DATE
+:mergeDebugAssets
+:transformClassesWithDexForDebug UP-TO-DATE
+:mergeDebugJniLibFolders UP-TO-DATE
+:transformNative_libsWithMergeJniLibsForDebug UP-TO-DATE
+:processDebugJavaRes UP-TO-DATE
+:transformResourcesWithMergeJavaResForDebug UP-TO-DATE
+:validateSigningDebug
+:packageDebug
+:assembleDebug
+:cdvBuildDebug
+
+BUILD SUCCESSFUL
+
+Total time: 2.457 secs
+Built the following apk(s):
+        D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+ANDROID_HOME=C:\Users\GIGABYTE\AppData\Local\Android\android-sdk
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_111
+No target specified, deploying to device 'LGF320Ld15907c1'.
+Skipping build...
+Built the following apk(s):
+        D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+Using apk: D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-debug.apk
+Package name: com.lightsomoim.www
+LAUNCH SUCCESS
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ cordova build android -release
+
+You have been opted out of telemetry. To change this, run: cordova telemetry on.
+ANDROID_HOME=C:\Users\GIGABYTE\AppData\Local\Android\android-sdk
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_111
+Subproject Path: CordovaLib
+Incremental java compilation is an incubating feature.
+:preBuild UP-TO-DATE
+:preReleaseBuild UP-TO-DATE
+:checkReleaseManifest
+:CordovaLib:preBuild UP-TO-DATE
+:CordovaLib:preReleaseBuild UP-TO-DATE
+:CordovaLib:checkReleaseManifest
+:CordovaLib:prepareReleaseDependencies
+:CordovaLib:compileReleaseAidl
+:CordovaLib:compileReleaseNdk UP-TO-DATE
+:CordovaLib:compileLint UP-TO-DATE
+:CordovaLib:copyReleaseLint UP-TO-DATE
+:CordovaLib:mergeReleaseShaders
+:CordovaLib:compileReleaseShaders
+:CordovaLib:generateReleaseAssets
+:CordovaLib:mergeReleaseAssets
+:CordovaLib:mergeReleaseProguardFiles
+:CordovaLib:packageReleaseRenderscript UP-TO-DATE
+:CordovaLib:compileReleaseRenderscript
+:CordovaLib:generateReleaseResValues
+:CordovaLib:generateReleaseResources
+:CordovaLib:packageReleaseResources
+:CordovaLib:processReleaseManifest
+:CordovaLib:generateReleaseBuildConfig
+:CordovaLib:processReleaseResources
+:CordovaLib:generateReleaseSources
+:CordovaLib:incrementalReleaseJavaCompilationSafeguard
+:CordovaLib:compileReleaseJavaWithJavac
+:CordovaLib:compileReleaseJavaWithJavac - is not incremental (e.g. outputs have changed, no previous execution, etc.).
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+:CordovaLib:processReleaseJavaRes UP-TO-DATE
+:CordovaLib:transformResourcesWithMergeJavaResForRelease
+:CordovaLib:transformClassesAndResourcesWithSyncLibJarsForRelease
+:CordovaLib:mergeReleaseJniLibFolders
+:CordovaLib:transformNative_libsWithMergeJniLibsForRelease
+:CordovaLib:transformNative_libsWithSyncJniLibsForRelease
+:CordovaLib:bundleRelease
+:prepareAndroidCordovaLibUnspecifiedReleaseLibrary
+:prepareReleaseDependencies
+:compileReleaseAidl
+:compileReleaseRenderscript
+:generateReleaseBuildConfig
+:generateReleaseResValues
+:generateReleaseResources
+:mergeReleaseResources
+:processReleaseManifest
+:processReleaseResources
+:generateReleaseSources
+:incrementalReleaseJavaCompilationSafeguard
+:compileReleaseJavaWithJavac
+:compileReleaseJavaWithJavac - is not incremental (e.g. outputs have changed, no previous execution, etc.).
+:compileReleaseNdk UP-TO-DATE
+:compileReleaseSources
+:lintVitalRelease
+:mergeReleaseShaders
+:compileReleaseShaders
+:generateReleaseAssets
+:mergeReleaseAssets
+:transformClassesWithDexForRelease
+:mergeReleaseJniLibFolders
+:transformNative_libsWithMergeJniLibsForRelease
+:processReleaseJavaRes UP-TO-DATE
+:transformResourcesWithMergeJavaResForRelease
+:packageRelease
+:assembleRelease
+:cdvBuildRelease
+
+BUILD SUCCESSFUL
+
+Total time: 14.604 secs
+Built the following apk(s):
+        D:/Java/Cordova/light_somoim/platforms/android/build/outputs/apk/android-release-unsigned.apk
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ keytool -genkey -v -keystore kjmoim.keystore -alias kjsomoim -keyalg RSA -keysize 2048 -validity 10000
+? ▒▒▒▒▒ ▒▒й▒? ▒?▒:  jclim?123
+▒▒ ▒▒й▒? ▒?▒ ▒?▒: jclim?123
+▒?▒▒▒ ▒▒▒▒ ▒?▒▒??y▒.
+  [Unknown]:  EL2A
+▒▒▒▒ ▒▒▒▒ ▒?▒▒▒ ▒?▒▒??y▒.
+  [Unknown]:  EL2A COMPANY
+▒▒▒▒ ▒?▒▒▒ ▒?▒▒??y▒.
+  [Unknown]:  EL2A STUDIO
+▒▒/▒▒/▒▒ ▒?▒▒▒ ▒?▒▒??y▒?
+  [Unknown]:  KJ
+▒▒/▒▒ ▒?▒▒▒ ▒?▒▒??y▒.
+  [Unknown]:  KJKJ
+▒▒ ▒▒▒▒▒▒ ▒▒ ▒?▒ ▒▒▒▒ ▒?? ▒?▒▒??y▒.
+  [Unknown]:  y
+CN=EL2A, OU=EL2A COMPANY, O=EL2A STUDIO, L=KJ, ST=KJKJ, C=y▒▒(▒▒) ▒½▒▒?▒?
+  [▒??▒]:  y
+
+▒▒▒▒▒▒ ▒▒▒▒ ▒▒? ▒?▒▒ 10,000▒▒▒▒ 2,048▒▒? RSA ? ▒▒ ▒▒ ▒▒u ▒▒▒▒▒ ▒▒▒▒▒▒(SHA256withRSA)▒▒ ▒▒▒▒▒?▒ ▒▒
+        : CN=EL2A, OU=EL2A COMPANY, O=EL2A STUDIO, L=KJ, ST=KJKJ, C=y
+<kjsomoim>▒▒ ▒▒▒▒ ? ▒▒й▒?▒▒ ▒?▒▒??y▒.
+        (? ▒▒▒▒▒ ▒▒й▒?▒▒ ▒▒▒▒▒▒ ▒▒▒ Enter ?▒▒ ▒▒▒▒):  jclim?123
+▒▒ ▒▒й▒? ▒?▒ ▒?▒: jclim?123
+[kjmoim.keystore▒▒(▒▒) ▒▒▒▒▒?▒ ▒▒]
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore EL2A
+Please specify alias name
+
+Please type jarsigner -help for usage
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore EL
+Please specify alias name
+
+Please type jarsigner -help for usage
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore kjmoim.keystore EL
+Enter Passphrase for keystore: jclim?123
+jarsigner: Certificate chain not found for: EL.  EL must reference a valid KeyStore key entry containing a private key and corresponding public key certificate chain.
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore kjmoim.keystore EL2A
+Enter Passphrase for keystore: jclim?123
+jarsigner: Certificate chain not found for: EL2A.  EL2A must reference a valid KeyStore key entry containing a private key and corresponding public key certificate chain.
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore kjmoim.keystore kjsomoim
+Enter Passphrase for keystore: jclim?123
+jarsigner: unable to open jar file: kjmoim.keystore
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore android-release-unsigned.apk kjsomoim
+Enter Passphrase for keystore: jclim?123
+jarsigner: unable to open jar file: android-release-unsigned.apk
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore kjmoim.keystore android-release-unsigned.apk kjsomoim
+Enter Passphrase for keystore: jclim?123
+ updating: META-INF/MANIFEST.MF
+   adding: META-INF/KJSOMOIM.SF
+   adding: META-INF/KJSOMOIM.RSA
+  signing: AndroidManifest.xml
+  signing: assets/www/OLD/X_packet_cell_create.html
+  signing: assets/www/OLD/X_packet_cell_list.html
+  signing: assets/www/OLD/X_packet_cell_modify.html
+  signing: assets/www/OLD/X_packet_cell_view.html
+  signing: assets/www/OLD/Z_packet_userList_view.html
+  signing: assets/www/OLD/Z_packet_userProfile_view.html
+  signing: assets/www/OLD/css/apply.css
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap-theme.css
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap-theme.css.map
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap-theme.min.css
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap.css
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap.css.map
+  signing: assets/www/OLD/css/bootstrap/css/bootstrap.min.css
+  signing: assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.eot
+  signing: assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.svg
+  signing: assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.ttf
+  signing: assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.woff
+  signing: assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.woff2
+  signing: assets/www/OLD/css/bootstrap/js/bootstrap.js
+  signing: assets/www/OLD/css/bootstrap/js/bootstrap.min.js
+  signing: assets/www/OLD/css/bootstrap/js/npm.js
+  signing: assets/www/OLD/css/cell.css
+  signing: assets/www/OLD/css/font-awesome/FontAwesome.otf
+  signing: assets/www/OLD/css/font-awesome/awesome.css
+  signing: assets/www/OLD/css/font-awesome/fontawesome-webfont.eot
+  signing: assets/www/OLD/css/font-awesome/fontawesome-webfont.svg
+  signing: assets/www/OLD/css/font-awesome/fontawesome-webfont.ttf
+  signing: assets/www/OLD/css/font-awesome/fontawesome-webfont.woff
+  signing: assets/www/OLD/css/images/ajax-loader.gif
+  signing: assets/www/OLD/css/images/icons-png/action-black.png
+  signing: assets/www/OLD/css/images/icons-png/action-white.png
+  signing: assets/www/OLD/css/images/icons-png/alert-black.png
+  signing: assets/www/OLD/css/images/icons-png/alert-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-l-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-l-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-r-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-r-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-d-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-l-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-l-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-r-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-r-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-l-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-l-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-r-black.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-r-white.png
+  signing: assets/www/OLD/css/images/icons-png/arrow-u-white.png
+  signing: assets/www/OLD/css/images/icons-png/audio-black.png
+  signing: assets/www/OLD/css/images/icons-png/audio-white.png
+  signing: assets/www/OLD/css/images/icons-png/back-black.png
+  signing: assets/www/OLD/css/images/icons-png/back-white.png
+  signing: assets/www/OLD/css/images/icons-png/bars-black.png
+  signing: assets/www/OLD/css/images/icons-png/bars-white.png
+  signing: assets/www/OLD/css/images/icons-png/bullets-black.png
+  signing: assets/www/OLD/css/images/icons-png/bullets-white.png
+  signing: assets/www/OLD/css/images/icons-png/calendar-black.png
+  signing: assets/www/OLD/css/images/icons-png/calendar-white.png
+  signing: assets/www/OLD/css/images/icons-png/camera-black.png
+  signing: assets/www/OLD/css/images/icons-png/camera-white.png
+  signing: assets/www/OLD/css/images/icons-png/carat-d-black.png
+  signing: assets/www/OLD/css/images/icons-png/carat-d-white.png
+  signing: assets/www/OLD/css/images/icons-png/carat-l-black.png
+  signing: assets/www/OLD/css/images/icons-png/carat-l-white.png
+  signing: assets/www/OLD/css/images/icons-png/carat-r-black.png
+  signing: assets/www/OLD/css/images/icons-png/carat-r-white.png
+  signing: assets/www/OLD/css/images/icons-png/carat-u-black.png
+  signing: assets/www/OLD/css/images/icons-png/carat-u-white.png
+  signing: assets/www/OLD/css/images/icons-png/check-black.png
+  signing: assets/www/OLD/css/images/icons-png/check-white.png
+  signing: assets/www/OLD/css/images/icons-png/clock-black.png
+  signing: assets/www/OLD/css/images/icons-png/clock-white.png
+  signing: assets/www/OLD/css/images/icons-png/cloud-black.png
+  signing: assets/www/OLD/css/images/icons-png/cloud-white.png
+  signing: assets/www/OLD/css/images/icons-png/comment-black.png
+  signing: assets/www/OLD/css/images/icons-png/comment-white.png
+  signing: assets/www/OLD/css/images/icons-png/delete-black.png
+  signing: assets/www/OLD/css/images/icons-png/delete-white.png
+  signing: assets/www/OLD/css/images/icons-png/edit-black.png
+  signing: assets/www/OLD/css/images/icons-png/edit-white.png
+  signing: assets/www/OLD/css/images/icons-png/eye-black.png
+  signing: assets/www/OLD/css/images/icons-png/eye-white.png
+  signing: assets/www/OLD/css/images/icons-png/forbidden-black.png
+  signing: assets/www/OLD/css/images/icons-png/forbidden-white.png
+  signing: assets/www/OLD/css/images/icons-png/forward-black.png
+  signing: assets/www/OLD/css/images/icons-png/forward-white.png
+  signing: assets/www/OLD/css/images/icons-png/gear-black.png
+  signing: assets/www/OLD/css/images/icons-png/gear-white.png
+  signing: assets/www/OLD/css/images/icons-png/grid-black.png
+  signing: assets/www/OLD/css/images/icons-png/grid-white.png
+  signing: assets/www/OLD/css/images/icons-png/heart-black.png
+  signing: assets/www/OLD/css/images/icons-png/heart-white.png
+  signing: assets/www/OLD/css/images/icons-png/home-black.png
+  signing: assets/www/OLD/css/images/icons-png/home-white.png
+  signing: assets/www/OLD/css/images/icons-png/info-black.png
+  signing: assets/www/OLD/css/images/icons-png/info-white.png
+  signing: assets/www/OLD/css/images/icons-png/location-black.png
+  signing: assets/www/OLD/css/images/icons-png/location-white.png
+  signing: assets/www/OLD/css/images/icons-png/lock-black.png
+  signing: assets/www/OLD/css/images/icons-png/lock-white.png
+  signing: assets/www/OLD/css/images/icons-png/mail-black.png
+  signing: assets/www/OLD/css/images/icons-png/mail-white.png
+  signing: assets/www/OLD/css/images/icons-png/minus-black.png
+  signing: assets/www/OLD/css/images/icons-png/minus-white.png
+  signing: assets/www/OLD/css/images/icons-png/navigation-black.png
+  signing: assets/www/OLD/css/images/icons-png/navigation-white.png
+  signing: assets/www/OLD/css/images/icons-png/phone-black.png
+  signing: assets/www/OLD/css/images/icons-png/phone-white.png
+  signing: assets/www/OLD/css/images/icons-png/plus-black.png
+  signing: assets/www/OLD/css/images/icons-png/plus-white.png
+  signing: assets/www/OLD/css/images/icons-png/power-black.png
+  signing: assets/www/OLD/css/images/icons-png/power-white.png
+  signing: assets/www/OLD/css/images/icons-png/recycle-black.png
+  signing: assets/www/OLD/css/images/icons-png/recycle-white.png
+  signing: assets/www/OLD/css/images/icons-png/refresh-black.png
+  signing: assets/www/OLD/css/images/icons-png/refresh-white.png
+  signing: assets/www/OLD/css/images/icons-png/search-black.png
+  signing: assets/www/OLD/css/images/icons-png/search-white.png
+  signing: assets/www/OLD/css/images/icons-png/shop-black.png
+  signing: assets/www/OLD/css/images/icons-png/shop-white.png
+  signing: assets/www/OLD/css/images/icons-png/star-black.png
+  signing: assets/www/OLD/css/images/icons-png/star-white.png
+  signing: assets/www/OLD/css/images/icons-png/tag-black.png
+  signing: assets/www/OLD/css/images/icons-png/tag-white.png
+  signing: assets/www/OLD/css/images/icons-png/user-black.png
+  signing: assets/www/OLD/css/images/icons-png/user-white.png
+  signing: assets/www/OLD/css/images/icons-png/video-black.png
+  signing: assets/www/OLD/css/images/icons-png/video-white.png
+  signing: assets/www/OLD/css/images/icons-svg/action-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/action-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/alert-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/alert-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-l-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-l-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-r-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-r-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-d-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-l-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-l-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-r-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-r-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-l-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-l-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-r-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-r-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/arrow-u-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/audio-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/audio-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/back-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/back-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/bars-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/bars-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/bullets-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/bullets-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/calendar-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/calendar-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/camera-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/camera-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-d-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-d-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-l-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-l-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-r-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-r-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-u-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/carat-u-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/check-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/check-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/clock-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/clock-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/cloud-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/cloud-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/comment-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/comment-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/delete-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/delete-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/edit-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/edit-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/eye-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/eye-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/forbidden-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/forbidden-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/forward-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/forward-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/gear-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/gear-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/grid-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/grid-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/heart-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/heart-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/home-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/home-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/info-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/info-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/location-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/location-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/lock-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/lock-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/mail-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/mail-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/minus-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/minus-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/navigation-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/navigation-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/phone-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/phone-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/plus-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/plus-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/power-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/power-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/recycle-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/recycle-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/refresh-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/refresh-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/search-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/search-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/shop-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/shop-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/star-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/star-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/tag-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/tag-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/user-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/user-white.svg
+  signing: assets/www/OLD/css/images/icons-svg/video-black.svg
+  signing: assets/www/OLD/css/images/icons-svg/video-white.svg
+  signing: assets/www/OLD/css/index.css
+  signing: assets/www/OLD/css/jquery.mobile-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.external-png-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.icons-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.inline-png-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.inline-svg-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.structure-1.4.5.min.css
+  signing: assets/www/OLD/css/jquery.mobile.theme-1.4.5.min.css
+  signing: assets/www/OLD/css/packet.css
+  signing: assets/www/OLD/font/Bauhaus-Std-Light_6297.ttf
+  signing: assets/www/OLD/img/logo.png
+  signing: assets/www/OLD/img/main.jpg
+  signing: assets/www/OLD/img/main2.jpg
+  signing: assets/www/OLD/img/main3.jpg
+  signing: assets/www/OLD/img/main4.jpg
+  signing: assets/www/OLD/img/main5.jpg
+  signing: assets/www/OLD/img/main6.jpg
+  signing: assets/www/OLD/index.html
+  signing: assets/www/OLD/js/index.js
+  signing: assets/www/OLD/js/jquery.js
+  signing: assets/www/OLD/js/jquery.min.js
+  signing: assets/www/OLD/js/jquery.mobile-1.4.5.js
+  signing: assets/www/OLD/js/jquery.mobile-1.4.5.min.js
+  signing: assets/www/OLD/js/packet.js
+  signing: assets/www/OLD/packet_alarm_list.html
+  signing: assets/www/OLD/packet_cell_boardList.html
+  signing: assets/www/OLD/packet_cell_boardModify.html
+  signing: assets/www/OLD/packet_cell_boardView.html
+  signing: assets/www/OLD/packet_cell_boardWrite.html
+  signing: assets/www/OLD/packet_cell_create.html
+  signing: assets/www/OLD/packet_cell_home.html
+  signing: assets/www/OLD/packet_cell_list.html
+  signing: assets/www/OLD/packet_joinApp_main.html
+  signing: assets/www/OLD/packet_joinApp_sub.html
+  signing: assets/www/OLD/packet_room_home.html
+  signing: assets/www/OLD/packet_room_profileModify.html
+  signing: assets/www/OLD/test.html
+  signing: assets/www/cordova-js-src/android/nativeapiprovider.js
+  signing: assets/www/cordova-js-src/android/promptbasednativeapi.js
+  signing: assets/www/cordova-js-src/exec.js
+  signing: assets/www/cordova-js-src/platform.js
+  signing: assets/www/cordova-js-src/plugin/android/app.js
+  signing: assets/www/cordova.js
+  signing: assets/www/cordova_plugins.js
+  signing: assets/www/css/bootstrap.min.css
+  signing: assets/www/css/index.css
+  signing: assets/www/css/main.css
+  signing: assets/www/fonts/glyphicons-halflings-regular.eot
+  signing: assets/www/fonts/glyphicons-halflings-regular.svg
+  signing: assets/www/fonts/glyphicons-halflings-regular.ttf
+  signing: assets/www/fonts/glyphicons-halflings-regular.woff
+  signing: assets/www/fonts/glyphicons-halflings-regular.woff2
+  signing: assets/www/img/logo.png
+  signing: assets/www/include/css/jquery.modal.css
+  signing: assets/www/include/css/jquery.modal.theme-atlant.css
+  signing: assets/www/include/css/jquery.modal.theme-xenon.css
+  signing: assets/www/include/js/jquery.modal.js
+  signing: assets/www/index.html
+  signing: assets/www/js/alarm.js
+  signing: assets/www/js/board.js
+  signing: assets/www/js/cellHome.js
+  signing: assets/www/js/index.js
+  signing: assets/www/js/main.js
+  signing: assets/www/js/meeting.js
+  signing: assets/www/js/myMoim.js
+  signing: assets/www/js/profile.js
+  signing: assets/www/js/setting.js
+  signing: assets/www/js/somoim.js
+  signing: assets/www/login.html
+  signing: assets/www/main.html
+  signing: assets/www/modal_test.html
+  signing: assets/www/themes/Bootstrap.css
+  signing: assets/www/themes/Bootstrap.min.css
+  signing: assets/www/themes/images/ajax-loader.gif
+  signing: assets/www/themes/images/icons-png/action-black.png
+  signing: assets/www/themes/images/icons-png/action-white.png
+  signing: assets/www/themes/images/icons-png/alert-black.png
+  signing: assets/www/themes/images/icons-png/alert-white.png
+  signing: assets/www/themes/images/icons-png/arrow-d-black.png
+  signing: assets/www/themes/images/icons-png/arrow-d-l-black.png
+  signing: assets/www/themes/images/icons-png/arrow-d-l-white.png
+  signing: assets/www/themes/images/icons-png/arrow-d-r-black.png
+  signing: assets/www/themes/images/icons-png/arrow-d-r-white.png
+  signing: assets/www/themes/images/icons-png/arrow-d-white.png
+  signing: assets/www/themes/images/icons-png/arrow-l-black.png
+  signing: assets/www/themes/images/icons-png/arrow-l-white.png
+  signing: assets/www/themes/images/icons-png/arrow-r-black.png
+  signing: assets/www/themes/images/icons-png/arrow-r-white.png
+  signing: assets/www/themes/images/icons-png/arrow-u-black.png
+  signing: assets/www/themes/images/icons-png/arrow-u-l-black.png
+  signing: assets/www/themes/images/icons-png/arrow-u-l-white.png
+  signing: assets/www/themes/images/icons-png/arrow-u-r-black.png
+  signing: assets/www/themes/images/icons-png/arrow-u-r-white.png
+  signing: assets/www/themes/images/icons-png/arrow-u-white.png
+  signing: assets/www/themes/images/icons-png/audio-black.png
+  signing: assets/www/themes/images/icons-png/audio-white.png
+  signing: assets/www/themes/images/icons-png/back-black.png
+  signing: assets/www/themes/images/icons-png/back-white.png
+  signing: assets/www/themes/images/icons-png/bars-black.png
+  signing: assets/www/themes/images/icons-png/bars-white.png
+  signing: assets/www/themes/images/icons-png/bullets-black.png
+  signing: assets/www/themes/images/icons-png/bullets-white.png
+  signing: assets/www/themes/images/icons-png/calendar-black.png
+  signing: assets/www/themes/images/icons-png/calendar-white.png
+  signing: assets/www/themes/images/icons-png/camera-black.png
+  signing: assets/www/themes/images/icons-png/camera-white.png
+  signing: assets/www/themes/images/icons-png/carat-d-black.png
+  signing: assets/www/themes/images/icons-png/carat-d-white.png
+  signing: assets/www/themes/images/icons-png/carat-l-black.png
+  signing: assets/www/themes/images/icons-png/carat-l-white.png
+  signing: assets/www/themes/images/icons-png/carat-r-black.png
+  signing: assets/www/themes/images/icons-png/carat-r-white.png
+  signing: assets/www/themes/images/icons-png/carat-u-black.png
+  signing: assets/www/themes/images/icons-png/carat-u-white.png
+  signing: assets/www/themes/images/icons-png/check-black.png
+  signing: assets/www/themes/images/icons-png/check-white.png
+  signing: assets/www/themes/images/icons-png/clock-black.png
+  signing: assets/www/themes/images/icons-png/clock-white.png
+  signing: assets/www/themes/images/icons-png/cloud-black.png
+  signing: assets/www/themes/images/icons-png/cloud-white.png
+  signing: assets/www/themes/images/icons-png/comment-black.png
+  signing: assets/www/themes/images/icons-png/comment-white.png
+  signing: assets/www/themes/images/icons-png/delete-black.png
+  signing: assets/www/themes/images/icons-png/delete-white.png
+  signing: assets/www/themes/images/icons-png/edit-black.png
+  signing: assets/www/themes/images/icons-png/edit-white.png
+  signing: assets/www/themes/images/icons-png/eye-black.png
+  signing: assets/www/themes/images/icons-png/eye-white.png
+  signing: assets/www/themes/images/icons-png/forbidden-black.png
+  signing: assets/www/themes/images/icons-png/forbidden-white.png
+  signing: assets/www/themes/images/icons-png/forward-black.png
+  signing: assets/www/themes/images/icons-png/forward-white.png
+  signing: assets/www/themes/images/icons-png/gear-black.png
+  signing: assets/www/themes/images/icons-png/gear-white.png
+  signing: assets/www/themes/images/icons-png/grid-black.png
+  signing: assets/www/themes/images/icons-png/grid-white.png
+  signing: assets/www/themes/images/icons-png/heart-black.png
+  signing: assets/www/themes/images/icons-png/heart-white.png
+  signing: assets/www/themes/images/icons-png/home-black.png
+  signing: assets/www/themes/images/icons-png/home-white.png
+  signing: assets/www/themes/images/icons-png/info-black.png
+  signing: assets/www/themes/images/icons-png/info-white.png
+  signing: assets/www/themes/images/icons-png/location-black.png
+  signing: assets/www/themes/images/icons-png/location-white.png
+  signing: assets/www/themes/images/icons-png/lock-black.png
+  signing: assets/www/themes/images/icons-png/lock-white.png
+  signing: assets/www/themes/images/icons-png/mail-black.png
+  signing: assets/www/themes/images/icons-png/mail-white.png
+  signing: assets/www/themes/images/icons-png/minus-black.png
+  signing: assets/www/themes/images/icons-png/minus-white.png
+  signing: assets/www/themes/images/icons-png/navigation-black.png
+  signing: assets/www/themes/images/icons-png/navigation-white.png
+  signing: assets/www/themes/images/icons-png/phone-black.png
+  signing: assets/www/themes/images/icons-png/phone-white.png
+  signing: assets/www/themes/images/icons-png/plus-black.png
+  signing: assets/www/themes/images/icons-png/plus-white.png
+  signing: assets/www/themes/images/icons-png/power-black.png
+  signing: assets/www/themes/images/icons-png/power-white.png
+  signing: assets/www/themes/images/icons-png/recycle-black.png
+  signing: assets/www/themes/images/icons-png/recycle-white.png
+  signing: assets/www/themes/images/icons-png/refresh-black.png
+  signing: assets/www/themes/images/icons-png/refresh-white.png
+  signing: assets/www/themes/images/icons-png/search-black.png
+  signing: assets/www/themes/images/icons-png/search-white.png
+  signing: assets/www/themes/images/icons-png/shop-black.png
+  signing: assets/www/themes/images/icons-png/shop-white.png
+  signing: assets/www/themes/images/icons-png/star-black.png
+  signing: assets/www/themes/images/icons-png/star-white.png
+  signing: assets/www/themes/images/icons-png/tag-black.png
+  signing: assets/www/themes/images/icons-png/tag-white.png
+  signing: assets/www/themes/images/icons-png/user-black.png
+  signing: assets/www/themes/images/icons-png/user-white.png
+  signing: assets/www/themes/images/icons-png/video-black.png
+  signing: assets/www/themes/images/icons-png/video-white.png
+  signing: assets/www/themes/jquery.mobile.icons.min.css
+  signing: classes.dex
+  signing: res/drawable-land-hdpi-v4/screen.png
+  signing: res/drawable-land-ldpi-v4/screen.png
+  signing: res/drawable-land-mdpi-v4/screen.png
+  signing: res/drawable-land-xhdpi-v4/screen.png
+  signing: res/drawable-port-hdpi-v4/screen.png
+  signing: res/drawable-port-ldpi-v4/screen.png
+  signing: res/drawable-port-mdpi-v4/screen.png
+  signing: res/drawable-port-xhdpi-v4/screen.png
+  signing: res/mipmap-hdpi-v4/icon.png
+  signing: res/mipmap-ldpi-v4/icon.png
+  signing: res/mipmap-mdpi-v4/icon.png
+  signing: res/mipmap-xhdpi-v4/icon.png
+  signing: res/xml/config.xml
+  signing: resources.arsc
+jar signed.
+
+Warning:
+No -tsa or -tsacert is provided and this jar is not timestamped. Without a timestamp, users may not be able to validate this jar after the signer certificate's expiration date (2044-09-11) or after any future revocation date.
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ zipalign -v 4 android-release-unsigned.apk kjsomim.APK
+bash: zipalign: command not found
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ C:\Users\GIGABYTE\AppData\Local\Android\android-sdk\build-tools\25.0.2\zipalign zipalign -v 4 android-release-unsigned.apk kjsomim.APK
+bash: C:UsersGIGABYTEAppDataLocalAndroidandroid-sdkbuild-tools25.0.2zipalign: command not found
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ C:\Users\GIGABYTE\AppData\Local\Android\android-sdk\build-tools\25.0.2\zipalign -v 4 android-release-unsigned.apk kjsomim.APK
+bash: C:UsersGIGABYTEAppDataLocalAndroidandroid-sdkbuild-tools25.0.2zipalign: command not found
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ zipalign -v 4 android-release-unsigned.apk kjsomim.APK
+bash: zipalign: command not found
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ ls
+android-release-unsigned.apk  hooks/           platforms/  www/           '광주 소모임 키파일'/
+config.xml                    kjmoim.keystore  plugins/    zipalign.exe*
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ zipalign.exe -v 4 android-release-unsigned.apk kjsomim.APK
+bash: zipalign.exe: command not found
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim
+$ ./zipalign.exe -f -v 4 android-release-unsigned.apk kjsomim.APK
+Verifying alignment of kjsomim.APK (4)...
+      50 META-INF/MANIFEST.MF (OK - compressed)
+   12328 META-INF/KJSOMOIM.SF (OK - compressed)
+   24864 META-INF/KJSOMOIM.RSA (OK - compressed)
+   26028 AndroidManifest.xml (OK - compressed)
+   27103 assets/www/OLD/X_packet_cell_create.html (OK - compressed)
+   29253 assets/www/OLD/X_packet_cell_list.html (OK - compressed)
+   30570 assets/www/OLD/X_packet_cell_modify.html (OK - compressed)
+   32726 assets/www/OLD/X_packet_cell_view.html (OK - compressed)
+   34811 assets/www/OLD/Z_packet_userList_view.html (OK - compressed)
+   36009 assets/www/OLD/Z_packet_userProfile_view.html (OK - compressed)
+   37867 assets/www/OLD/css/apply.css (OK - compressed)
+   38333 assets/www/OLD/css/bootstrap/css/bootstrap-theme.css (OK - compressed)
+   40902 assets/www/OLD/css/bootstrap/css/bootstrap-theme.css.map (OK - compressed)
+   47634 assets/www/OLD/css/bootstrap/css/bootstrap-theme.min.css (OK - compressed)
+   50069 assets/www/OLD/css/bootstrap/css/bootstrap.css (OK - compressed)
+   70917 assets/www/OLD/css/bootstrap/css/bootstrap.css.map (OK - compressed)
+  144060 assets/www/OLD/css/bootstrap/css/bootstrap.min.css (OK - compressed)
+  163373 assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.eot (OK - compressed)
+  183533 assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.svg (OK - compressed)
+  210454 assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.ttf (OK - compressed)
+  233943 assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.woff (OK - compressed)
+  257240 assets/www/OLD/css/bootstrap/fonts/glyphicons-halflings-regular.woff2 (OK)
+  275351 assets/www/OLD/css/bootstrap/js/bootstrap.js (OK - compressed)
+  289076 assets/www/OLD/css/bootstrap/js/bootstrap.min.js (OK - compressed)
+  298558 assets/www/OLD/css/bootstrap/js/npm.js (OK - compressed)
+  298825 assets/www/OLD/css/cell.css (OK - compressed)
+  299145 assets/www/OLD/css/font-awesome/FontAwesome.otf (OK - compressed)
+  349653 assets/www/OLD/css/font-awesome/awesome.css (OK - compressed)
+  353747 assets/www/OLD/css/font-awesome/fontawesome-webfont.eot (OK - compressed)
+  392019 assets/www/OLD/css/font-awesome/fontawesome-webfont.svg (OK - compressed)
+  448959 assets/www/OLD/css/font-awesome/fontawesome-webfont.ttf (OK - compressed)
+  493443 assets/www/OLD/css/font-awesome/fontawesome-webfont.woff (OK - compressed)
+  537956 assets/www/OLD/css/images/ajax-loader.gif (OK)
+  544292 assets/www/OLD/css/images/icons-png/action-black.png (OK)
+  544604 assets/www/OLD/css/images/icons-png/action-white.png (OK)
+  544924 assets/www/OLD/css/images/icons-png/alert-black.png (OK)
+  545260 assets/www/OLD/css/images/icons-png/alert-white.png (OK)
+  545596 assets/www/OLD/css/images/icons-png/arrow-d-black.png (OK)
+  545836 assets/www/OLD/css/images/icons-png/arrow-d-l-black.png (OK)
+  546100 assets/www/OLD/css/images/icons-png/arrow-d-l-white.png (OK)
+  546368 assets/www/OLD/css/images/icons-png/arrow-d-r-black.png (OK)
+  546624 assets/www/OLD/css/images/icons-png/arrow-d-r-white.png (OK)
+  546888 assets/www/OLD/css/images/icons-png/arrow-d-white.png (OK)
+  547132 assets/www/OLD/css/images/icons-png/arrow-l-black.png (OK)
+  547376 assets/www/OLD/css/images/icons-png/arrow-l-white.png (OK)
+  547624 assets/www/OLD/css/images/icons-png/arrow-r-black.png (OK)
+  547864 assets/www/OLD/css/images/icons-png/arrow-r-white.png (OK)
+  548108 assets/www/OLD/css/images/icons-png/arrow-u-black.png (OK)
+  548352 assets/www/OLD/css/images/icons-png/arrow-u-l-black.png (OK)
+  548612 assets/www/OLD/css/images/icons-png/arrow-u-l-white.png (OK)
+  548876 assets/www/OLD/css/images/icons-png/arrow-u-r-black.png (OK)
+  549136 assets/www/OLD/css/images/icons-png/arrow-u-r-white.png (OK)
+  549396 assets/www/OLD/css/images/icons-png/arrow-u-white.png (OK)
+  549640 assets/www/OLD/css/images/icons-png/audio-black.png (OK)
+  550040 assets/www/OLD/css/images/icons-png/audio-white.png (OK)
+  550444 assets/www/OLD/css/images/icons-png/back-black.png (OK)
+  550768 assets/www/OLD/css/images/icons-png/back-white.png (OK)
+  551100 assets/www/OLD/css/images/icons-png/bars-black.png (OK)
+  551324 assets/www/OLD/css/images/icons-png/bars-white.png (OK)
+  551552 assets/www/OLD/css/images/icons-png/bullets-black.png (OK)
+  551792 assets/www/OLD/css/images/icons-png/bullets-white.png (OK)
+  552040 assets/www/OLD/css/images/icons-png/calendar-black.png (OK)
+  552280 assets/www/OLD/css/images/icons-png/calendar-white.png (OK)
+  552516 assets/www/OLD/css/images/icons-png/camera-black.png (OK)
+  552860 assets/www/OLD/css/images/icons-png/camera-white.png (OK)
+  553204 assets/www/OLD/css/images/icons-png/carat-d-black.png (OK)
+  553504 assets/www/OLD/css/images/icons-png/carat-d-white.png (OK)
+  553812 assets/www/OLD/css/images/icons-png/carat-l-black.png (OK)
+  554080 assets/www/OLD/css/images/icons-png/carat-l-white.png (OK)
+  554352 assets/www/OLD/css/images/icons-png/carat-r-black.png (OK)
+  554628 assets/www/OLD/css/images/icons-png/carat-r-white.png (OK)
+  554916 assets/www/OLD/css/images/icons-png/carat-u-black.png (OK)
+  555204 assets/www/OLD/css/images/icons-png/carat-u-white.png (OK)
+  555500 assets/www/OLD/css/images/icons-png/check-black.png (OK)
+  555760 assets/www/OLD/css/images/icons-png/check-white.png (OK)
+  556024 assets/www/OLD/css/images/icons-png/clock-black.png (OK)
+  556424 assets/www/OLD/css/images/icons-png/clock-white.png (OK)
+  556832 assets/www/OLD/css/images/icons-png/cloud-black.png (OK)
+  557136 assets/www/OLD/css/images/icons-png/cloud-white.png (OK)
+  557440 assets/www/OLD/css/images/icons-png/comment-black.png (OK)
+  557700 assets/www/OLD/css/images/icons-png/comment-white.png (OK)
+  557952 assets/www/OLD/css/images/icons-png/delete-black.png (OK)
+  558216 assets/www/OLD/css/images/icons-png/delete-white.png (OK)
+  558492 assets/www/OLD/css/images/icons-png/edit-black.png (OK)
+  558744 assets/www/OLD/css/images/icons-png/edit-white.png (OK)
+  559004 assets/www/OLD/css/images/icons-png/eye-black.png (OK)
+  559344 assets/www/OLD/css/images/icons-png/eye-white.png (OK)
+  559692 assets/www/OLD/css/images/icons-png/forbidden-black.png (OK)
+  560088 assets/www/OLD/css/images/icons-png/forbidden-white.png (OK)
+  560488 assets/www/OLD/css/images/icons-png/forward-black.png (OK)
+  560816 assets/www/OLD/css/images/icons-png/forward-white.png (OK)
+  561148 assets/www/OLD/css/images/icons-png/gear-black.png (OK)
+  561556 assets/www/OLD/css/images/icons-png/gear-white.png (OK)
+  561948 assets/www/OLD/css/images/icons-png/grid-black.png (OK)
+  562200 assets/www/OLD/css/images/icons-png/grid-white.png (OK)
+  562460 assets/www/OLD/css/images/icons-png/heart-black.png (OK)
+  562792 assets/www/OLD/css/images/icons-png/heart-white.png (OK)
+  563128 assets/www/OLD/css/images/icons-png/home-black.png (OK)
+  563368 assets/www/OLD/css/images/icons-png/home-white.png (OK)
+  563612 assets/www/OLD/css/images/icons-png/info-black.png (OK)
+  563952 assets/www/OLD/css/images/icons-png/info-white.png (OK)
+  564296 assets/www/OLD/css/images/icons-png/location-black.png (OK)
+  564636 assets/www/OLD/css/images/icons-png/location-white.png (OK)
+  564972 assets/www/OLD/css/images/icons-png/lock-black.png (OK)
+  565268 assets/www/OLD/css/images/icons-png/lock-white.png (OK)
+  565564 assets/www/OLD/css/images/icons-png/mail-black.png (OK)
+  565880 assets/www/OLD/css/images/icons-png/mail-white.png (OK)
+  566200 assets/www/OLD/css/images/icons-png/minus-black.png (OK)
+  566408 assets/www/OLD/css/images/icons-png/minus-white.png (OK)
+  566620 assets/www/OLD/css/images/icons-png/navigation-black.png (OK)
+  566960 assets/www/OLD/css/images/icons-png/navigation-white.png (OK)
+  567292 assets/www/OLD/css/images/icons-png/phone-black.png (OK)
+  567652 assets/www/OLD/css/images/icons-png/phone-white.png (OK)
+  568016 assets/www/OLD/css/images/icons-png/plus-black.png (OK)
+  568228 assets/www/OLD/css/images/icons-png/plus-white.png (OK)
+  568444 assets/www/OLD/css/images/icons-png/power-black.png (OK)
+  568828 assets/www/OLD/css/images/icons-png/power-white.png (OK)
+  569224 assets/www/OLD/css/images/icons-png/recycle-black.png (OK)
+  569560 assets/www/OLD/css/images/icons-png/recycle-white.png (OK)
+  569908 assets/www/OLD/css/images/icons-png/refresh-black.png (OK)
+  570296 assets/www/OLD/css/images/icons-png/refresh-white.png (OK)
+  570688 assets/www/OLD/css/images/icons-png/search-black.png (OK)
+  571104 assets/www/OLD/css/images/icons-png/search-white.png (OK)
+  571516 assets/www/OLD/css/images/icons-png/shop-black.png (OK)
+  571780 assets/www/OLD/css/images/icons-png/shop-white.png (OK)
+  572044 assets/www/OLD/css/images/icons-png/star-black.png (OK)
+  572364 assets/www/OLD/css/images/icons-png/star-white.png (OK)
+  572692 assets/www/OLD/css/images/icons-png/tag-black.png (OK)
+  572940 assets/www/OLD/css/images/icons-png/tag-white.png (OK)
+  573188 assets/www/OLD/css/images/icons-png/user-black.png (OK)
+  573524 assets/www/OLD/css/images/icons-png/user-white.png (OK)
+  573860 assets/www/OLD/css/images/icons-png/video-black.png (OK)
+  574124 assets/www/OLD/css/images/icons-png/video-white.png (OK)
+  574385 assets/www/OLD/css/images/icons-svg/action-black.svg (OK - compressed)
+  574886 assets/www/OLD/css/images/icons-svg/action-white.svg (OK - compressed)
+  575398 assets/www/OLD/css/images/icons-svg/alert-black.svg (OK - compressed)
+  575926 assets/www/OLD/css/images/icons-svg/alert-white.svg (OK - compressed)
+  576468 assets/www/OLD/css/images/icons-svg/arrow-d-black.svg (OK - compressed)
+  576942 assets/www/OLD/css/images/icons-svg/arrow-d-l-black.svg (OK - compressed)
+  577422 assets/www/OLD/css/images/icons-svg/arrow-d-l-white.svg (OK - compressed)
+  577915 assets/www/OLD/css/images/icons-svg/arrow-d-r-black.svg (OK - compressed)
+  578394 assets/www/OLD/css/images/icons-svg/arrow-d-r-white.svg (OK - compressed)
+  578885 assets/www/OLD/css/images/icons-svg/arrow-d-white.svg (OK - compressed)
+  579370 assets/www/OLD/css/images/icons-svg/arrow-l-black.svg (OK - compressed)
+  579847 assets/www/OLD/css/images/icons-svg/arrow-l-white.svg (OK - compressed)
+  580334 assets/www/OLD/css/images/icons-svg/arrow-r-black.svg (OK - compressed)
+  580804 assets/www/OLD/css/images/icons-svg/arrow-r-white.svg (OK - compressed)
+  581287 assets/www/OLD/css/images/icons-svg/arrow-u-black.svg (OK - compressed)
+  581760 assets/www/OLD/css/images/icons-svg/arrow-u-l-black.svg (OK - compressed)
+  582244 assets/www/OLD/css/images/icons-svg/arrow-u-l-white.svg (OK - compressed)
+  582738 assets/www/OLD/css/images/icons-svg/arrow-u-r-black.svg (OK - compressed)
+  583219 assets/www/OLD/css/images/icons-svg/arrow-u-r-white.svg (OK - compressed)
+  583711 assets/www/OLD/css/images/icons-svg/arrow-u-white.svg (OK - compressed)
+  584193 assets/www/OLD/css/images/icons-svg/audio-black.svg (OK - compressed)
+  584864 assets/www/OLD/css/images/icons-svg/audio-white.svg (OK - compressed)
+  585544 assets/www/OLD/css/images/icons-svg/back-black.svg (OK - compressed)
+  586030 assets/www/OLD/css/images/icons-svg/back-white.svg (OK - compressed)
+  586526 assets/www/OLD/css/images/icons-svg/bars-black.svg (OK - compressed)
+  587076 assets/www/OLD/css/images/icons-svg/bars-white.svg (OK - compressed)
+  587640 assets/www/OLD/css/images/icons-svg/bullets-black.svg (OK - compressed)
+  588245 assets/www/OLD/css/images/icons-svg/bullets-white.svg (OK - compressed)
+  588866 assets/www/OLD/css/images/icons-svg/calendar-black.svg (OK - compressed)
+  589449 assets/www/OLD/css/images/icons-svg/calendar-white.svg (OK - compressed)
+  590040 assets/www/OLD/css/images/icons-svg/camera-black.svg (OK - compressed)
+  590655 assets/www/OLD/css/images/icons-svg/camera-white.svg (OK - compressed)
+  591285 assets/www/OLD/css/images/icons-svg/carat-d-black.svg (OK - compressed)
+  591778 assets/www/OLD/css/images/icons-svg/carat-d-white.svg (OK - compressed)
+  592282 assets/www/OLD/css/images/icons-svg/carat-l-black.svg (OK - compressed)
+  592775 assets/www/OLD/css/images/icons-svg/carat-l-white.svg (OK - compressed)
+  593280 assets/www/OLD/css/images/icons-svg/carat-r-black.svg (OK - compressed)
+  593770 assets/www/OLD/css/images/icons-svg/carat-r-white.svg (OK - compressed)
+  594276 assets/www/OLD/css/images/icons-svg/carat-u-black.svg (OK - compressed)
+  594765 assets/www/OLD/css/images/icons-svg/carat-u-white.svg (OK - compressed)
+  595268 assets/www/OLD/css/images/icons-svg/check-black.svg (OK - compressed)
+  595753 assets/www/OLD/css/images/icons-svg/check-white.svg (OK - compressed)
+  596251 assets/www/OLD/css/images/icons-svg/clock-black.svg (OK - compressed)
+  596825 assets/www/OLD/css/images/icons-svg/clock-white.svg (OK - compressed)
+  597409 assets/www/OLD/css/images/icons-svg/cloud-black.svg (OK - compressed)
+  598022 assets/www/OLD/css/images/icons-svg/cloud-white.svg (OK - compressed)
+  598648 assets/www/OLD/css/images/icons-svg/comment-black.svg (OK - compressed)
+  599157 assets/www/OLD/css/images/icons-svg/comment-white.svg (OK - compressed)
+  599676 assets/www/OLD/css/images/icons-svg/delete-black.svg (OK - compressed)
+  600165 assets/www/OLD/css/images/icons-svg/delete-white.svg (OK - compressed)
+  600662 assets/www/OLD/css/images/icons-svg/edit-black.svg (OK - compressed)
+  601150 assets/www/OLD/css/images/icons-svg/edit-white.svg (OK - compressed)
+  601647 assets/www/OLD/css/images/icons-svg/eye-black.svg (OK - compressed)
+  602201 assets/www/OLD/css/images/icons-svg/eye-white.svg (OK - compressed)
+  602773 assets/www/OLD/css/images/icons-svg/forbidden-black.svg (OK - compressed)
+  603485 assets/www/OLD/css/images/icons-svg/forbidden-white.svg (OK - compressed)
+  604206 assets/www/OLD/css/images/icons-svg/forward-black.svg (OK - compressed)
+  604697 assets/www/OLD/css/images/icons-svg/forward-white.svg (OK - compressed)
+  605195 assets/www/OLD/css/images/icons-svg/gear-black.svg (OK - compressed)
+  606422 assets/www/OLD/css/images/icons-svg/gear-white.svg (OK - compressed)
+  607662 assets/www/OLD/css/images/icons-svg/grid-black.svg (OK - compressed)
+  608331 assets/www/OLD/css/images/icons-svg/grid-white.svg (OK - compressed)
+  609012 assets/www/OLD/css/images/icons-svg/heart-black.svg (OK - compressed)
+  609528 assets/www/OLD/css/images/icons-svg/heart-white.svg (OK - compressed)
+  610051 assets/www/OLD/css/images/icons-svg/home-black.svg (OK - compressed)
+  610530 assets/www/OLD/css/images/icons-svg/home-white.svg (OK - compressed)
+  611019 assets/www/OLD/css/images/icons-svg/info-black.svg (OK - compressed)
+  611564 assets/www/OLD/css/images/icons-svg/info-white.svg (OK - compressed)
+  612125 assets/www/OLD/css/images/icons-svg/location-black.svg (OK - compressed)
+  612658 assets/www/OLD/css/images/icons-svg/location-white.svg (OK - compressed)
+  613198 assets/www/OLD/css/images/icons-svg/lock-black.svg (OK - compressed)
+  613770 assets/www/OLD/css/images/icons-svg/lock-white.svg (OK - compressed)
+  614357 assets/www/OLD/css/images/icons-svg/mail-black.svg (OK - compressed)
+  614834 assets/www/OLD/css/images/icons-svg/mail-white.svg (OK - compressed)
+  615323 assets/www/OLD/css/images/icons-svg/minus-black.svg (OK - compressed)
+  615769 assets/www/OLD/css/images/icons-svg/minus-white.svg (OK - compressed)
+  616231 assets/www/OLD/css/images/icons-svg/navigation-black.svg (OK - compressed)
+  616695 assets/www/OLD/css/images/icons-svg/navigation-white.svg (OK - compressed)
+  617165 assets/www/OLD/css/images/icons-svg/phone-black.svg (OK - compressed)
+  617918 assets/www/OLD/css/images/icons-svg/phone-white.svg (OK - compressed)
+  618695 assets/www/OLD/css/images/icons-svg/plus-black.svg (OK - compressed)
+  619174 assets/www/OLD/css/images/icons-svg/plus-white.svg (OK - compressed)
+  619662 assets/www/OLD/css/images/icons-svg/power-black.svg (OK - compressed)
+  620402 assets/www/OLD/css/images/icons-svg/power-white.svg (OK - compressed)
+  621156 assets/www/OLD/css/images/icons-svg/recycle-black.svg (OK - compressed)
+  621751 assets/www/OLD/css/images/icons-svg/recycle-white.svg (OK - compressed)
+  622360 assets/www/OLD/css/images/icons-svg/refresh-black.svg (OK - compressed)
+  622993 assets/www/OLD/css/images/icons-svg/refresh-white.svg (OK - compressed)
+  623635 assets/www/OLD/css/images/icons-svg/search-black.svg (OK - compressed)
+  624234 assets/www/OLD/css/images/icons-svg/search-white.svg (OK - compressed)
+  624845 assets/www/OLD/css/images/icons-svg/shop-black.svg (OK - compressed)
+  625423 assets/www/OLD/css/images/icons-svg/shop-white.svg (OK - compressed)
+  626012 assets/www/OLD/css/images/icons-svg/star-black.svg (OK - compressed)
+  626493 assets/www/OLD/css/images/icons-svg/star-white.svg (OK - compressed)
+  626984 assets/www/OLD/css/images/icons-svg/tag-black.svg (OK - compressed)
+  627487 assets/www/OLD/css/images/icons-svg/tag-white.svg (OK - compressed)
+  628001 assets/www/OLD/css/images/icons-svg/user-black.svg (OK - compressed)
+  628698 assets/www/OLD/css/images/icons-svg/user-white.svg (OK - compressed)
+  629407 assets/www/OLD/css/images/icons-svg/video-black.svg (OK - compressed)
+  629913 assets/www/OLD/css/images/icons-svg/video-white.svg (OK - compressed)
+  630409 assets/www/OLD/css/index.css (OK - compressed)
+  631981 assets/www/OLD/css/jquery.mobile-1.4.5.min.css (OK - compressed)
+  657292 assets/www/OLD/css/jquery.mobile.external-png-1.4.5.min.css (OK - compressed)
+  670313 assets/www/OLD/css/jquery.mobile.icons-1.4.5.min.css (OK - compressed)
+  683434 assets/www/OLD/css/jquery.mobile.inline-png-1.4.5.min.css (OK - compressed)
+  708865 assets/www/OLD/css/jquery.mobile.inline-svg-1.4.5.min.css (OK - compressed)
+  733184 assets/www/OLD/css/jquery.mobile.structure-1.4.5.min.css (OK - compressed)
+  743494 assets/www/OLD/css/jquery.mobile.theme-1.4.5.min.css (OK - compressed)
+  745729 assets/www/OLD/css/packet.css (OK - compressed)
+  746724 assets/www/OLD/font/Bauhaus-Std-Light_6297.ttf (OK - compressed)
+  767032 assets/www/OLD/img/logo.png (OK)
+  788912 assets/www/OLD/img/main.jpg (OK)
+  860308 assets/www/OLD/img/main2.jpg (OK)
+  960944 assets/www/OLD/img/main3.jpg (OK)
+ 1036692 assets/www/OLD/img/main4.jpg (OK)
+ 1075636 assets/www/OLD/img/main5.jpg (OK)
+ 1162016 assets/www/OLD/img/main6.jpg (OK)
+ 1224203 assets/www/OLD/index.html (OK - compressed)
+ 1224970 assets/www/OLD/js/index.js (OK - compressed)
+ 1225848 assets/www/OLD/js/jquery.js (OK - compressed)
+ 1307013 assets/www/OLD/js/jquery.min.js (OK - compressed)
+ 1340379 assets/www/OLD/js/jquery.mobile-1.4.5.js (OK - compressed)
+ 1466934 assets/www/OLD/js/jquery.mobile-1.4.5.min.js (OK - compressed)
+ 1522620 assets/www/OLD/js/packet.js (OK - compressed)
+ 1525149 assets/www/OLD/packet_alarm_list.html (OK - compressed)
+ 1526693 assets/www/OLD/packet_cell_boardList.html (OK - compressed)
+ 1528714 assets/www/OLD/packet_cell_boardModify.html (OK - compressed)
+ 1530342 assets/www/OLD/packet_cell_boardView.html (OK - compressed)
+ 1532772 assets/www/OLD/packet_cell_boardWrite.html (OK - compressed)
+ 1534267 assets/www/OLD/packet_cell_create.html (OK - compressed)
+ 1536890 assets/www/OLD/packet_cell_home.html (OK - compressed)
+ 1541743 assets/www/OLD/packet_cell_list.html (OK - compressed)
+ 1543350 assets/www/OLD/packet_joinApp_main.html (OK - compressed)
+ 1545891 assets/www/OLD/packet_joinApp_sub.html (OK - compressed)
+ 1547377 assets/www/OLD/packet_room_home.html (OK - compressed)
+ 1548393 assets/www/OLD/packet_room_profileModify.html (OK - compressed)
+ 1550446 assets/www/OLD/test.html (OK - compressed)
+ 1551039 assets/www/cordova-js-src/android/nativeapiprovider.js (OK - compressed)
+ 1551826 assets/www/cordova-js-src/android/promptbasednativeapi.js (OK - compressed)
+ 1552660 assets/www/cordova-js-src/exec.js (OK - compressed)
+ 1556443 assets/www/cordova-js-src/platform.js (OK - compressed)
+ 1558325 assets/www/cordova-js-src/plugin/android/app.js (OK - compressed)
+ 1559865 assets/www/cordova.js (OK - compressed)
+ 1577421 assets/www/cordova_plugins.js (OK - compressed)
+ 1577668 assets/www/css/bootstrap.min.css (OK - compressed)
+ 1596938 assets/www/css/index.css (OK - compressed)
+ 1598487 assets/www/css/main.css (OK - compressed)
+ 1600192 assets/www/fonts/glyphicons-halflings-regular.eot (OK - compressed)
+ 1620334 assets/www/fonts/glyphicons-halflings-regular.svg (OK - compressed)
+ 1647237 assets/www/fonts/glyphicons-halflings-regular.ttf (OK - compressed)
+ 1670708 assets/www/fonts/glyphicons-halflings-regular.woff (OK - compressed)
+ 1693984 assets/www/fonts/glyphicons-halflings-regular.woff2 (OK)
+ 1712076 assets/www/img/logo.png (OK)
+ 1733968 assets/www/include/css/jquery.modal.css (OK - compressed)
+ 1740596 assets/www/include/css/jquery.modal.theme-atlant.css (OK - compressed)
+ 1741439 assets/www/include/css/jquery.modal.theme-xenon.css (OK - compressed)
+ 1741824 assets/www/include/js/jquery.modal.js (OK - compressed)
+ 1744437 assets/www/index.html (OK - compressed)
+ 1744939 assets/www/js/alarm.js (OK - compressed)
+ 1745893 assets/www/js/board.js (OK - compressed)
+ 1748225 assets/www/js/cellHome.js (OK - compressed)
+ 1751716 assets/www/js/index.js (OK - compressed)
+ 1752588 assets/www/js/main.js (OK - compressed)
+ 1755412 assets/www/js/meeting.js (OK - compressed)
+ 1757274 assets/www/js/myMoim.js (OK - compressed)
+ 1758402 assets/www/js/profile.js (OK - compressed)
+ 1759636 assets/www/js/setting.js (OK)
+ 1759698 assets/www/js/somoim.js (OK - compressed)
+ 1761131 assets/www/login.html (OK - compressed)
+ 1763541 assets/www/main.html (OK - compressed)
+ 1766977 assets/www/modal_test.html (OK - compressed)
+ 1769159 assets/www/themes/Bootstrap.css (OK - compressed)
+ 1774975 assets/www/themes/Bootstrap.min.css (OK - compressed)
+ 1779236 assets/www/themes/images/ajax-loader.gif (OK)
+ 1785568 assets/www/themes/images/icons-png/action-black.png (OK)
+ 1785840 assets/www/themes/images/icons-png/action-white.png (OK)
+ 1786136 assets/www/themes/images/icons-png/alert-black.png (OK)
+ 1786424 assets/www/themes/images/icons-png/alert-white.png (OK)
+ 1786740 assets/www/themes/images/icons-png/arrow-d-black.png (OK)
+ 1786940 assets/www/themes/images/icons-png/arrow-d-l-black.png (OK)
+ 1787156 assets/www/themes/images/icons-png/arrow-d-l-white.png (OK)
+ 1787376 assets/www/themes/images/icons-png/arrow-d-r-black.png (OK)
+ 1787592 assets/www/themes/images/icons-png/arrow-d-r-white.png (OK)
+ 1787812 assets/www/themes/images/icons-png/arrow-d-white.png (OK)
+ 1788012 assets/www/themes/images/icons-png/arrow-l-black.png (OK)
+ 1788212 assets/www/themes/images/icons-png/arrow-l-white.png (OK)
+ 1788420 assets/www/themes/images/icons-png/arrow-r-black.png (OK)
+ 1788620 assets/www/themes/images/icons-png/arrow-r-white.png (OK)
+ 1788824 assets/www/themes/images/icons-png/arrow-u-black.png (OK)
+ 1789028 assets/www/themes/images/icons-png/arrow-u-l-black.png (OK)
+ 1789244 assets/www/themes/images/icons-png/arrow-u-l-white.png (OK)
+ 1789456 assets/www/themes/images/icons-png/arrow-u-r-black.png (OK)
+ 1789672 assets/www/themes/images/icons-png/arrow-u-r-white.png (OK)
+ 1789884 assets/www/themes/images/icons-png/arrow-u-white.png (OK)
+ 1790084 assets/www/themes/images/icons-png/audio-black.png (OK)
+ 1790404 assets/www/themes/images/icons-png/audio-white.png (OK)
+ 1790752 assets/www/themes/images/icons-png/back-black.png (OK)
+ 1791032 assets/www/themes/images/icons-png/back-white.png (OK)
+ 1791340 assets/www/themes/images/icons-png/bars-black.png (OK)
+ 1791524 assets/www/themes/images/icons-png/bars-white.png (OK)
+ 1791716 assets/www/themes/images/icons-png/bullets-black.png (OK)
+ 1791920 assets/www/themes/images/icons-png/bullets-white.png (OK)
+ 1792132 assets/www/themes/images/icons-png/calendar-black.png (OK)
+ 1792324 assets/www/themes/images/icons-png/calendar-white.png (OK)
+ 1792520 assets/www/themes/images/icons-png/camera-black.png (OK)
+ 1792784 assets/www/themes/images/icons-png/camera-white.png (OK)
+ 1793072 assets/www/themes/images/icons-png/carat-d-black.png (OK)
+ 1793272 assets/www/themes/images/icons-png/carat-d-white.png (OK)
+ 1793476 assets/www/themes/images/icons-png/carat-l-black.png (OK)
+ 1793660 assets/www/themes/images/icons-png/carat-l-white.png (OK)
+ 1793844 assets/www/themes/images/icons-png/carat-r-black.png (OK)
+ 1794028 assets/www/themes/images/icons-png/carat-r-white.png (OK)
+ 1794216 assets/www/themes/images/icons-png/carat-u-black.png (OK)
+ 1794412 assets/www/themes/images/icons-png/carat-u-white.png (OK)
+ 1794612 assets/www/themes/images/icons-png/check-black.png (OK)
+ 1794828 assets/www/themes/images/icons-png/check-white.png (OK)
+ 1795052 assets/www/themes/images/icons-png/clock-black.png (OK)
+ 1795400 assets/www/themes/images/icons-png/clock-white.png (OK)
+ 1795788 assets/www/themes/images/icons-png/cloud-black.png (OK)
+ 1796036 assets/www/themes/images/icons-png/cloud-white.png (OK)
+ 1796308 assets/www/themes/images/icons-png/comment-black.png (OK)
+ 1796520 assets/www/themes/images/icons-png/comment-white.png (OK)
+ 1796740 assets/www/themes/images/icons-png/delete-black.png (OK)
+ 1796956 assets/www/themes/images/icons-png/delete-white.png (OK)
+ 1797172 assets/www/themes/images/icons-png/edit-black.png (OK)
+ 1797384 assets/www/themes/images/icons-png/edit-white.png (OK)
+ 1797600 assets/www/themes/images/icons-png/eye-black.png (OK)
+ 1797896 assets/www/themes/images/icons-png/eye-white.png (OK)
+ 1798224 assets/www/themes/images/icons-png/forbidden-black.png (OK)
+ 1798576 assets/www/themes/images/icons-png/forbidden-white.png (OK)
+ 1798952 assets/www/themes/images/icons-png/forward-black.png (OK)
+ 1799236 assets/www/themes/images/icons-png/forward-white.png (OK)
+ 1799548 assets/www/themes/images/icons-png/gear-black.png (OK)
+ 1799884 assets/www/themes/images/icons-png/gear-white.png (OK)
+ 1800260 assets/www/themes/images/icons-png/grid-black.png (OK)
+ 1800468 assets/www/themes/images/icons-png/grid-white.png (OK)
+ 1800688 assets/www/themes/images/icons-png/heart-black.png (OK)
+ 1800976 assets/www/themes/images/icons-png/heart-white.png (OK)
+ 1801292 assets/www/themes/images/icons-png/home-black.png (OK)
+ 1801492 assets/www/themes/images/icons-png/home-white.png (OK)
+ 1801696 assets/www/themes/images/icons-png/info-black.png (OK)
+ 1801984 assets/www/themes/images/icons-png/info-white.png (OK)
+ 1802304 assets/www/themes/images/icons-png/location-black.png (OK)
+ 1802568 assets/www/themes/images/icons-png/location-white.png (OK)
+ 1802848 assets/www/themes/images/icons-png/lock-black.png (OK)
+ 1803100 assets/www/themes/images/icons-png/lock-white.png (OK)
+ 1803372 assets/www/themes/images/icons-png/mail-black.png (OK)
+ 1803640 assets/www/themes/images/icons-png/mail-white.png (OK)
+ 1803928 assets/www/themes/images/icons-png/minus-black.png (OK)
+ 1804088 assets/www/themes/images/icons-png/minus-white.png (OK)
+ 1804252 assets/www/themes/images/icons-png/navigation-black.png (OK)
+ 1804508 assets/www/themes/images/icons-png/navigation-white.png (OK)
+ 1804776 assets/www/themes/images/icons-png/phone-black.png (OK)
+ 1805076 assets/www/themes/images/icons-png/phone-white.png (OK)
+ 1805392 assets/www/themes/images/icons-png/plus-black.png (OK)
+ 1805568 assets/www/themes/images/icons-png/plus-white.png (OK)
+ 1805744 assets/www/themes/images/icons-png/power-black.png (OK)
+ 1806056 assets/www/themes/images/icons-png/power-white.png (OK)
+ 1806400 assets/www/themes/images/icons-png/recycle-black.png (OK)
+ 1806692 assets/www/themes/images/icons-png/recycle-white.png (OK)
+ 1807012 assets/www/themes/images/icons-png/refresh-black.png (OK)
+ 1807328 assets/www/themes/images/icons-png/refresh-white.png (OK)
+ 1807664 assets/www/themes/images/icons-png/search-black.png (OK)
+ 1807980 assets/www/themes/images/icons-png/search-white.png (OK)
+ 1808320 assets/www/themes/images/icons-png/shop-black.png (OK)
+ 1808540 assets/www/themes/images/icons-png/shop-white.png (OK)
+ 1808772 assets/www/themes/images/icons-png/star-black.png (OK)
+ 1809052 assets/www/themes/images/icons-png/star-white.png (OK)
+ 1809356 assets/www/themes/images/icons-png/tag-black.png (OK)
+ 1809564 assets/www/themes/images/icons-png/tag-white.png (OK)
+ 1809776 assets/www/themes/images/icons-png/user-black.png (OK)
+ 1810064 assets/www/themes/images/icons-png/user-white.png (OK)
+ 1810384 assets/www/themes/images/icons-png/video-black.png (OK)
+ 1810604 assets/www/themes/images/icons-png/video-white.png (OK)
+ 1810829 assets/www/themes/jquery.mobile.icons.min.css (OK - compressed)
+ 1824018 classes.dex (OK - compressed)
+ 1878460 res/drawable-land-hdpi-v4/screen.png (OK)
+ 2094552 res/drawable-land-ldpi-v4/screen.png (OK)
+ 2136168 res/drawable-land-mdpi-v4/screen.png (OK)
+ 2226736 res/drawable-land-xhdpi-v4/screen.png (OK)
+ 2715280 res/drawable-port-hdpi-v4/screen.png (OK)
+ 2935696 res/drawable-port-ldpi-v4/screen.png (OK)
+ 2976836 res/drawable-port-mdpi-v4/screen.png (OK)
+ 3069344 res/drawable-port-xhdpi-v4/screen.png (OK)
+ 3570416 res/mipmap-hdpi-v4/icon.png (OK)
+ 3575700 res/mipmap-ldpi-v4/icon.png (OK)
+ 3577996 res/mipmap-mdpi-v4/icon.png (OK)
+ 3581268 res/mipmap-xhdpi-v4/icon.png (OK)
+ 3588119 res/xml/config.xml (OK - compressed)
+ 3589084 resources.arsc (OK)
+Verification succesful
+
+GIGABYTE@EL MINGW32 /d/Java/Cordova/light_somoim

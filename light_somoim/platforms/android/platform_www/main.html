@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Light Somoim</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" /> <!-- 기본 CSS -->
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+
+		<script src="js/main.js"></script> <!-- 기본 JS -->
+
+		<script src="js/somoim.js"></script> <!-- 소모임 JS -->
+		<script src="js/myMoim.js"></script> <!-- 내모임 JS -->
+		<script src="js/setting.js"></script> <!-- 설정 JS -->
+
+		<script src="js/cellHome.js"></script> <!-- 모임 HOME JS -->
+		<script src="js/meeting.js"></script> <!-- 정모 JS -->
+		<script src="js/board.js"></script> <!-- 게시판 JS -->
+
+		<script src="js/alarm.js"></script> <!-- 알람 JS -->
+		<script src="js/profile.js"></script> <!-- 프로필 JS -->
+
+			<!-- [STR] alert 모달 -->
+			<link href="include/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+			<link href="include/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+			<link href="include/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+			<script type="text/javascript" src="include/js/jquery.modal.js"></script>
+			<!-- [END] alert 모달 -->
+
+			
+
+		<script type="text/javascript">
+		$(document).ready(function() {
+			appStart(); // 앱 기본 시작
+
+			$( document ).on( "swipeleft swiperight", "#pageMain", function( e ) {
+					if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+							if ( e.type === "swipeleft" ) {
+									$( ".right-panel" ).panel( "open" );
+							}
+					}
+			});
+
+		});
+
+		</script>
+
+	</head>
+	<body>
+
+	<!-- 매칭 로딩바 -->
+	<button style="display:none;" class="matching-loader" data-inline="true" data-msgtext="검색중..." data-textvisible="true" data-textonly="false"></button>
+
+
+		<!-- [STR] 페이지 메인 -->
+		<div id="pageMain" data-role="page" data-theme="a">
+			<div class="right-panel" data-role="panel" data-theme="b" data-display="push" data-position="right">Loading...</div><!-- /panel -->
+			<div data-role="header" data-position="inline" class="header header_main">Loading...</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 소모임 매칭 -->
+			<div class="somoim" style="display:none">
+				<div style="margin:1em;">
+					<ul class="ui-listview-outer" data-role="listview" class="myMoimListUl">
+						<li class="sub-title">소모임 자동매칭</li>
+					</ul>
+				</div>
+
+				<br />
+
+				<div class="somoimMatching" style="margin:1.0em; padding:1.0em; border:1px solid #38c;">
+					<button onclick="startSomoim()" data-theme="d" style="padding:2.0em;">Matching Start</button>
+					<br />
+					<div style="font-weight:bold; font-size:1.2em;">
+						Matching Start 버튼을 눌러주세요.
+						<br />소모임 검색 시간이 있을 수 있습니다.
+						<br />검색 후 매칭이 되면 자동으로 가입됩니다.
+						<br />경우에 따라 신규로 개설될 수 있습니다.
+					</div>
+				</div>
+
+				<br />
+
+				<div style="margin:1em;">
+					<ul class="ui-listview-outer" data-role="listview" class="myMoimListUl">
+						<li class="sub-title">소모임 검색</li>
+					</ul>
+				</div>
+				<br />
+				<div class="somoimSearch" style="margin:1.0em; padding:1.0em; border:1px solid #38c;">
+					<div>
+						<div style="float:left; width:60%;">
+							<input type="text" name="searchText" />
+						</div>
+						<div style="float:right;">
+						<a class="ui-btn ui-btn-inline ui-icon-search ui-btn-icon-left" href="javascript:startSearch();" style="margin-top:0">검색</a>
+							</div>
+					</div>
+
+					<div class="searchListBox" style="clear:both;">
+					<hr />
+						<div class="searchList"></div> <!-- 검색 결과 리스트 -->
+					</div> <!-- End of searchListBox -->
+
+				</div>
+
+				<br />
+				
+			</div>
+			<!-- [END] 소모임 매칭 -->
+
+
+			<!-- [STR] 내모임 -->
+			<div class="myMoim" style="display:none">
+				<div class="myMoimList" style="margin:1.0em;"></div> <!-- 모임 리스트 -->
+				<br />
+			</div>
+			<!-- [END] 내모임 -->
+
+
+			<!-- [STR] 알람 -->
+			<div class="alarm" style="display:none;">
+				<div class="alarmList" style="margin:1.0em;"></div> <!-- 알람 리스트 -->
+				<br />
+			</div>
+			<!-- [END] 알람 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of pageMain -->
+		<!-- [STR] 페이지 메인 -->
+
+
+		<!-- [STR] 소모임 메인 -->
+		<div id="pageCell" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header header_cell">Loading...</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] HOME -->
+			<div class="cellHome" style="margin:1.0em;">
+				<div class="cellHomeInfo"></div> <!-- 기본 정보 -->
+				<br />
+				<div class="cellMemberList" style="margin:1.0em;"></div> <!-- 멤버 리스트 -->
+				<br />
+				<div class="cellInviteList ui-controlgroup-controls"></div> <!-- 초대 리스트 -->
+				<br />
+				<div class="cellControl"></div> <!-- 모임 가입, 탈퇴, 삭제 버튼 -->
+				<br />
+			</div>
+			<!-- [END] HOME -->
+
+
+			<!-- [STR] 정모 -->
+			<div class="cellMeeting" style="display:none">
+				<div class="cellMeetingList" style="margin:1.0em;"></div> <!-- 미팅 리스트 -->
+				<br />
+			</div>
+			<!-- [END] 정모 -->
+
+
+			<!-- [STR] 게시판 -->
+			<div class="cellBoard" style="display:none">
+				<div style="margin:1.0em;">
+					<button onclick="moveBoardWrite()">글쓰기</button>
+				</div>	
+				<div class="cellBoardList" style="border-top:1px solid #38c;"></div> <!-- 게시판 리스트 -->
+				<br />
+			</div>
+			<!-- [END] 게시판 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 소모임 메인 -->
+
+
+		<!-- [STR] 모임만들기 -->
+		<div id="pageCreateCell" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">모임만들기</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 모임만들기 컨텐츠 -->
+			<div class="cellCreate" style="margin:1.0em;">
+				<div class="cellCreateContent">
+					<div data-role="fieldcontain">
+						<label for="name">모임 이름 :</label>
+						<input type="text" name="cellName" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="textarea">모임 소개 :</label>
+						<textarea name="cellIntro"></textarea>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">지 역 :</label>
+						<select name="locationNumber">
+							<option value="02">서울/경기</option>
+							<option value="033">강원도</option>
+							<option value="041">충남/충북</option>
+							<option value="054">경남/경북</option>
+							<option value="061">광주광역시/전라</option>
+							<option value="064">제주도</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">주 제 :</label>
+						<input type="text" name="category_name" />
+					</div>
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<input name="approve" id="checkbox-1a" type="checkbox">
+							<label for="checkbox-1a">승인 후 가입</label>
+						</fieldset>
+					</div>
+					
+					<button onclick="cellCreateSubmit()" data-theme="d">모임 만들기</button>
+
+					<br />
+
+				</div>
+			</div>
+			<!-- [END] 모임만들기 컨텐츠 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 모임만들기 -->
+
+
+		<!-- [STR] 모임 기본정보 수정 -->
+		<div id="pageModifyCell" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">수정</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 수정 컨텐츠 -->
+			<div class="cellCreate" style="margin:1.0em;">
+				<div class="cellCreateContent">
+					<div data-role="fieldcontain">
+						<label for="name">모임 이름 :</label>
+						<input type="text" name="modifyCellName" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="textarea">모임 소개 :</label>
+						<textarea name="modifyCellIntro"></textarea>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">지 역 :</label>
+						<select name="modifyLocationNumber">
+							<option value="02">서울/경기</option>
+							<option value="033">강원도</option>
+							<option value="041">충남/충북</option>
+							<option value="054">경남/경북</option>
+							<option value="061">광주광역시/전라</option>
+							<option value="064">제주도</option>
+						</select>
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">주 제 :</label>
+						<input type="text" name="modifyCategory_name" />
+					</div>
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<input name="modifyApprove" id="checkbox-1a" type="checkbox">
+							<label for="checkbox-1a">승인 후 가입</label>
+						</fieldset>
+					</div>
+					
+					<button onclick="cellModifySubmit()" data-theme="d">수정 완료</button>
+
+					<br />
+
+				</div>
+			</div>
+			<!-- [END] 수정 컨텐츠 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 모임 기본정보 수정 -->
+
+
+		<!-- [STR] 미팅만들기 -->
+		<div id="pageCreateMeeting" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">정모만들기</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 모임만들기 컨텐츠 -->
+			<div class="meetingCreate" style="margin:1.0em;">
+				<div class="meetingCreateContent">
+					<div data-role="fieldcontain">
+						<label for="name">정모 이름 :</label>
+						<input type="text" name="meetingName" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">정모 날짜 :</label>
+						<input type="date" name="meetingDate" />
+						<input type="text" name="meetingTime" placeholder="상세시간을 적어주세요." />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">모임 장소 :</label>
+						<input type="text" name="meetingLocation" />
+					</div>
+
+					<button onclick="cellMeetingSubmit()" data-theme="d">정모 만들기</button>
+
+					<br />
+
+				</div> <!-- End of meetingCreateContent -->
+			</div>
+			<!-- [END] 모임만들기 컨텐츠 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 미팅만들기 -->
+
+
+		<!-- [STR] 미팅 수정 -->
+		<div id="pageModifyMeeting" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">수정</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 수정 컨텐츠 -->
+			<div class="meetingCreate" style="margin:1.0em;">
+				<div class="meetingCreateContent">
+					<div data-role="fieldcontain">
+						<label for="name">정모 이름 :</label>
+						<input type="text" name="modifyMeetingName" />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">정모 날짜 :</label>
+						<input type="date" name="modifyMeetingDate" />
+						<input type="text" name="modifyMeetingTime" placeholder="상세시간을 적어주세요." />
+					</div>
+					<div data-role="fieldcontain">
+						<label for="name">모임 장소 :</label>
+						<input type="text" name="modifyMeetingLocation" />
+					</div>
+
+					<button onclick="meetingModifySubmit()" data-theme="d">수정 완료</button>
+
+					<button onclick="meetingDeleteCheck()" data-theme="c">삭제</button>
+
+					<br />
+
+				</div> <!-- End of meetingCreateContent -->
+			</div>
+			<!-- [END] 수정 컨텐츠 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 미팅 수정 -->
+
+
+		<!-- [STR] 글쓰기 -->
+		<div id="pageBoardWrite" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">글쓰기</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 글쓰기 폼 -->
+			<div class="boardWrite" style="margin:1.0em;">
+				<div class="boardWriteForm">
+					<div style="margin:1.0em;">
+						<input type="text" name="title" placeholder="제목을 입력하세요." />
+					</div>
+					
+					<div style="margin:1.0em;">
+						<textarea class="boardDes" name="description" placeholder="이야기를 들려주세요." style=""></textarea>
+					</div>
+					
+					<div style="margin:1.0em;">
+						<button onclick="submitCellBoardWrite()">작성완료</button>
+					</div>
+
+					<br />
+
+				</div> <!-- End of boardWriteForm -->
+			</div>
+			<!-- [END] 글쓰기 폼 -->
+
+			</div> <!-- End of content -->
+		</div> <!-- End of page -->
+		<!-- [END] 글쓰기 -->
+
+		<!-- [STR] 게시글 본문 -->
+		<div id="pageBoardView" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline" class="header" style="color:#38c;">게시판</div> <!-- 헤더 -->
+
+			<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+				<div id="cellBoardMain"></div> <!-- 게시글 본문 -->
+					
+				<div id="cellBoardReply"></div> <!-- 리플리스트 -->
+				
+				<hr />
+				<div style="background-color:#38c; margin:1.0em;">
+					<div style="width:95%; margin:0 auto; padding:3px;">
+						<div style="width:75%; margin-left:5px; float:left;"><input type="text" name="reply_des" style="height:2.7em;" /></div>
+						<div style="width:20%; margin-left:10px; float:left;">
+							<button style="height:37px; line-height:15px;" onclick="insertReply()">전송</button>
+						</div>
+						<div style="clear:both;"></div>
+					</div>					
+				</div>
+
+				<br />
+
+		</div> <!-- End of content -->
+	</div> <!-- End of page -->
+	<!-- [END] 게시글 본문 -->
+
+	<!-- [STR] 게시글 수정 -->
+	<div id="pageBoardModify" data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline" class="header" style="color:#38c;">게시판</div> <!-- 헤더 -->
+
+		<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 글수정 폼 -->
+			<div class="boardModify" style="margin:1.0em;">
+				<div class="boardModifyForm">
+					<div style="margin:1.0em;">
+						<input type="text" name="modify_title" placeholder="제목을 입력하세요." />
+					</div>
+					
+					<div style="margin:1.0em;">
+						<textarea class="boardDes" name="modify_description" placeholder="이야기를 들려주세요."></textarea>
+					</div>
+					
+					<div style="margin:1.0em;">
+						<button onclick="submitCellBoardUpdate()">수정완료</button>
+					</div>
+
+					<br />
+
+				</div> <!-- End of boardModifyForm -->
+			</div>
+			<!-- [END] 글수정 폼 -->
+
+			<br />
+
+		</div> <!-- End of content -->
+	</div> <!-- End of page -->
+	<!-- [END] 게시글 수정 -->
+
+
+	<!-- [STR] 프로필 수정 -->
+	<div id="pageProfileModify" data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline" class="header" style="color:#38c;">프로필</div> <!-- 헤더 -->
+
+		<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 프로필 폼 -->
+			<div class="profileModify" style="margin:1.0em;">
+				<div class="profileModifyForm">
+
+					<div data-role="fieldcontain">
+						<label for="name">닉네임</label>
+						<input type="text" name="regId" disabled="disabled" placeholder="asd" />
+					</div>
+
+					<div data-role="fieldcontain" style="clear:both;">
+						<label for="name">비밀번호</label>
+						<input type="password" name="regPw" />
+					</div>
+
+					<div class="profileData"></div>
+
+					<br />
+
+					<div>
+						<a href="javascript:profileModifySubmit()" data-role="button" data-theme="d" data-icon="check">수정 완료</a>
+					</div>
+
+					<div>
+						<a href="javascript:profileMemberLeaveCheck()" data-role="button" data-theme="c" data-icon="check">회원 탈퇴</a>
+					</div>
+
+				</div> <!-- End of profileModifyForm -->
+
+				<hr />
+			</div>
+			<!-- [END] 프로필 폼 -->
+
+			<br />
+
+		</div> <!-- End of content -->
+	</div> <!-- End of page -->
+	<!-- [END] 프로필 수정 -->
+
+
+	<!-- [STR] 개선사항 -->
+	<div id="pageAdvice" data-role="page" data-theme="a">
+		<div data-role="header" data-position="inline" class="header" style="color:#38c;">개선</div> <!-- 헤더 -->
+
+		<div class="ui-content" role="main" data-theme="a" style="padding:0">
+
+			<!-- [STR] 개선 폼 -->
+			<div class="adviceContent" style="margin:1.0em;">
+				<div data-role="fieldcontain">
+					<label for="name">자유롭게 적어주세요!</label>
+					<textarea name="advice"></textarea>
+				</div>
+				<div>
+					<a href="javascript:adviceSubmit()" data-role="button" data-theme="d" data-icon="check">작성 완료</a>
+				</div>
+			</div>			
+			<!-- [END] 개선 폼 -->
+
+			<hr />
+
+			<br />
+
+		</div> <!-- End of content -->
+	</div> <!-- End of page -->
+	<!-- [END] 개선사항 -->
+
+	</body>
+</html>

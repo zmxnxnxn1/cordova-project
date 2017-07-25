@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/packet.js"></script>
+		<title>Packet</title>
+   	<style>
+  		.bottom-menu-1 {color:#38c !important;}
+  		.table {width:90%; margin:0 auto; margin-top:60px;}
+  		.active {width:30%; text-align:center; font-weight:bold; color:green; vertical-align: center; padding-top:14px !important}
+  		.danger {color:black;}
+  		.ui-input-text, .ui-input-search {margin:0}
+   	</style>
+        
+    <script>
+      
+      $(document).ready(function() {
+    	  settingApplication(); // 어플리케이션 기본 세팅
+      	getUserInfo(); // 유저 정보를 불러온다.
+      });
+        
+      // 유저정보 불러오기
+			function getUserInfo() {
+       
+				var $putData = "user_key="; 
+				$putData += getUserStorageKey();
+	       
+				$.ajax ({
+						type:"GET",
+						url:jspFileRoute + "packet_room_profileModifyView.jsp",
+						dataType:'JSON',
+						data:$putData,
+						success:function(data) {
+							CreateHtmlUserModify(data);							
+						},
+						error:function(data) {}
+					});	
+	 			}
+	        
+	      // 유저정보 INPUT 박스에 넣기
+	      function CreateHtmlUserModify(data) {
+	      	var article = [ 'mail', 'userName', 'sex', 'birth', 'phone_number', 'nickname', 'job', 'location', 'memo' ];
+	      	var dataLength = Object.keys(data).length;
+	      	for (var i=0; i<dataLength; i++) {
+	      		$('input[name='+article[i]+']').val(data[article[i]]);
+	      	}
+	      }
+	      
+	      // 유저정보 업데이트 check
+	      function putUserInfoUpdateCheck() {
+	      	if (confirm('수정사항을 적용하시겠습니까?')) {
+	      		putUserInfoUpdate();
+	      	}
+	      }
+	        
+	      // 유저정보 업데이트 보내기
+	      function putUserInfoUpdate() {
+	  			
+	  			var putData = $("form[name=userInformationMainForm]").serialize();
+	  			putData += "&userKey="; 
+					putData += getUserStorageKey();
+	  			
+	  			$.ajax ({
+					type:"POST",
+					url:jspFileRoute + "packet_room_profileUpdate.jsp",
+					dataType:'JSON',
+					data:putData,
+					success:function(data) {
+						alert('수정을 완료하였습니다.');
+						moveHome();
+					},
+					error:function(data) {
+						alert('error');
+						console.log(data);
+					}
+				});	
+      }
+      
+      
+      </script>
+    </head>
+    <body>
+   	<form method="GET" name="userInformationMainForm" accept-charset="utf-8">
+    	<div data-role="page" style="height:100%;">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		<table class="table table-striped table-bordered table-hover">
+	    		<tbody class="table-striped">
+					  <tr class="success">
+							<td class="active">메일</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="mail" readonly>
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">이름</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="userName">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">성별</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="sex">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">생일</td>
+							<td class="danger">
+								<input type="number" class="form-control" name="birth">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">전화번호</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="phone_number">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">닉네임</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="nickname">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">직업</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="job">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">지역</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="location">
+							</td>
+						</tr>
+						<tr class="success">
+							<td class="active">메모</td>
+							<td class="danger">
+								<input type="text" class="form-control" name="memo">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<div style="width:90%; margin:0 auto; margin-top:30px;">
+   				<a href="javascript:putUserInfoUpdateCheck()" class="btn btn-primary btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+   					<span class="glyphicon glyphicon-ok"></span>
+   					수정 완료
+   				</a>
+   			</div>
+   			
+   			<div style="width:90%; margin:0 auto; margin-top:10px; margin-bottom:30px;">
+   				<a href="javascript:history.back()" class="btn btn-primary btn-info btn-block" style="color:white;" data-dialog="true" data-transition="slidedown">
+   					<span class="glyphicon glyphicon-repeat"></span>
+   					돌아가기
+   				</a>
+   			</div>
+    		<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </form>
+    </body>
+ 
+ </html>

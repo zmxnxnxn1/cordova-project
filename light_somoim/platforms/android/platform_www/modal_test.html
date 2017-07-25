@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Light Somoim</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="css/main.css" /> <!-- 기본 CSS -->
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+		<script src="js/main.js"></script> <!-- 기본 JS -->
+		<script src="js/myMoim.js"></script> <!-- 내모임 JS -->
+
+		<!-- [STR] alert 모달 -->
+			<link href="include/css/jquery.modal.css" type="text/css" rel="stylesheet" />
+			<link href="include/css/jquery.modal.theme-xenon.css" type="text/css" rel="stylesheet" />
+			<link href="include/css/jquery.modal.theme-atlant.css" type="text/css" rel="stylesheet" />
+			<script type="text/javascript" src="include/js/jquery.modal.js"></script>
+		<!-- [END] alert 모달 -->
+		<script type="text/javascript">
+		$(document).ready(function() {
+			getLastTopMenuNumber(); // 마지막으로 접속한 탑 메뉴 번호
+		});
+
+		$(document).ready(function(e) {
+		//alert
+		$('a#alert').click(function() {
+			modal({
+				type: 'alert',
+				title: 'Alert',
+				text: "Simple Message!",
+				callback: function(result) {
+					alert(result);
+				}
+			});
+		});
+		//confirm
+		$('a#confirm').click(function() {
+			modal({
+				type: 'confirm',
+				title: 'Confirm',
+				text: 'Are you sure you want to delete your brain?',
+				callback: function(result) {
+					alert(result);
+				}
+			});
+		});
+		//prompt
+		$('a#prompt').click(function() {
+			modal({
+				type: 'prompt',
+				title: 'Prompt',
+				text: 'Type your name:',
+				callback: function(result) {
+					alert(result);
+				}
+			});
+		});
+		//success
+		$('a#success').click(function() {
+			modal({
+				type: 'success',
+				title: 'Success',
+				text: 'A simple success message!',
+			});
+		});
+		//warning
+		$('a#warning').click(function() {
+			modal({
+				type: 'warning',
+				title: 'Warning',
+				text: 'A simple warning message!',
+				center: false,
+			});
+		});
+		//info
+		$('a#info').click(function() {
+			modal({
+				type: 'info',
+				title: 'Info',
+				text: 'A simple info message!',
+				autoclose: true,
+			});
+		});
+		//error
+		$('a#error').click(function() {
+			modal({
+				type: 'error',
+				title: 'Error',
+				text: 'A simple error message!',
+			});
+		});
+		//inverted
+		$('a#inverted').click(function() {
+			modal({
+				type: 'inverted',
+				title: 'Inverted',
+				text: 'A simple inverted message!',
+			});
+		});
+		//primary
+		$('a#primary').click(function() {
+			modal({
+				type: 'primary',
+				title: 'Primary',
+				text: 'A simple primary message!',
+			});
+		});
+		//custom
+		$('a#custom').click(function() {
+			modal({
+				type: 'primary', //Type of Modal Box (alert | confirm | prompt | success | warning | error | info | inverted | primary)
+				title: 'Message', //Modal Title
+				text: 'Simple primary message with custom options and <b>Xenon</b> theme.', //Modal HTML Content
+				size: 'normal', //Modal Size (normal | large | small)
+				buttons: [{
+					text: 'OK', //Button Text
+					val: 'ok', //Button Value
+					eKey: true, //Enter Keypress
+					addClass: 'btn-light-blue btn-square', //Button Classes (btn-large | btn-small | btn-green | btn-light-green | btn-purple | btn-orange | btn-pink | btn-turquoise | btn-blue | btn-light-blue | btn-light-red | btn-red | btn-yellow | btn-white | btn-black | btn-rounded | btn-circle | btn-square | btn-disabled)
+					onClick: function(argument) {
+						console.log(argument);
+						alert('Look in console!');
+					}
+				}, ],
+				center: true, //Center Modal Box?
+				autoclose: false, //Auto Close Modal Box?
+				callback: null, //Callback Function after close Modal (ex: function(result){alert(result);})
+				onShow: function(r) {
+					console.log(r);
+				}, //After show Modal function
+				closeClick: true, //Close Modal on click near the box
+				closable: true, //If Modal is closable
+				theme: 'xenon', //Modal Custom Theme
+				animate: true, //Slide animation
+				background: 'rgba(0,0,0,0.35)', //Background Color, it can be null
+				zIndex: 1050, //z-index
+				buttonText: {
+					ok: 'OK',
+					yes: 'Yes',
+					cancel: 'Cancel'
+				},
+				template: '<div class="modal-box"><div class="modal-inner"><div class="modal-title"><a class="modal-close-btn"></a></div><div class="modal-text"></div><div class="modal-buttons"></div></div></div>',
+				_classes: {
+					box: '.modal-box',
+					boxInner: ".modal-inner",
+					title: '.modal-title',
+					content: '.modal-text',
+					buttons: '.modal-buttons',
+					closebtn: '.modal-close-btn'
+				}
+			});
+		});
+		//custom2
+		$('a#custom2').click(function() {
+			modal({
+				type: 'inverted', //Type of Modal Box (alert | confirm | prompt | success | warning | error | info | inverted | primary)
+				title: 'Message', //Modal Title
+				text: 'Simple primary message with custom options and <b>Atlant</b> theme.<br>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.', //Modal HTML Content
+				size: 'normal', //Modal Size (normal | large | small)
+				buttons: [{
+					text: 'OK', //Button Text
+					val: 'ok', //Button Value
+					eKey: true, //Enter Keypress
+					addClass: 'btn-light-blue', //Button Classes (btn-large | btn-small | btn-green | btn-light-green | btn-purple | btn-orange | btn-pink | btn-turquoise | btn-blue | btn-light-blue | btn-light-red | btn-red | btn-yellow | btn-white | btn-black | btn-rounded | btn-circle | btn-square | btn-disabled)
+					onClick: function(argument) {
+						console.log(argument);
+						alert('Look in console!');
+					}
+				}, ],
+				center: true, //Center Modal Box?
+				autoclose: false, //Auto Close Modal Box?
+				callback: null, //Callback Function after close Modal (ex: function(result){alert(result);})
+				onShow: function(r) {}, //After show Modal function
+				closeClick: true, //Close Modal on click near the box
+				closable: true, //If Modal is closable
+				theme: 'atlant', //Modal Custom Theme
+				animate: false, //Slide animation
+				background: 'rgba(0,0,0,0.35)', //Background Color, it can be null
+				zIndex: 1050, //z-index
+				buttonText: {
+					ok: 'OK',
+					yes: 'Yes',
+					cancel: 'Cancel'
+				},
+				template: '<div class="modal-box"><div class="modal-inner"><div class="modal-title"><a class="modal-close-btn"></a></div><div class="modal-text"></div><div class="modal-buttons"></div></div></div>',
+				_classes: {
+					box: '.modal-box',
+					boxInner: ".modal-inner",
+					title: '.modal-title',
+					content: '.modal-text',
+					buttons: '.modal-buttons',
+					closebtn: '.modal-close-btn'
+				}
+			});
+		});
+		//custom3
+		$('a#custom3').click(function() {
+			modal({
+				type: 'default', //Type of Modal Box (alert | confirm | prompt | success | warning | error | info | inverted | primary)
+				title: 'Message', //Modal Title
+				text: 'Simple message with custom options and <b>Reseted</b> theme.', //Modal HTML Content
+				//buttons : null,
+				theme: 'reseted'
+			});
+		});
+	});
+		</script>
+
+
+	</head>
+	<body>
+		
+
+<div> <a href="#" id="alert">Alert</a>
+		<br> <a href="#" id="confirm">Confirm</a>
+		<br> <a href="#" id="prompt">Prompt</a>
+		<br> <a href="#" id="success">Success</a>
+		<br> <a href="#" id="warning">Warning</a>
+		<br> <a href="#" id="info">Info</a>
+		<br> <a href="#" id="error">Error</a>
+		<br> <a href="#" id="inverted">Inverted</a>
+		<br> <a href="#" id="primary">Primary</a>
+		<br>
+		<br> <a href="#" id="custom">Custom | Xenon Theme</a>
+		<br> <a href="#" id="custom2">Custom | Atlant Theme</a>
+		<br> <a href="#" id="custom3">Custom | Reseted</a> </div>
+	<hr /> &copy; 2015 <b>CreativeDream</b>. </body>
+	
+	</body>
+</html>

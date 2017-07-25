@@ -1,0 +1,50 @@
+.cell-top-menu {
+	margin-top:5px;
+}
+
+.cell-div-box {
+	border:2px dotted green; 
+	margin:10px; 
+	font-size:12px; 
+	height:60px; 
+	font-weight:bold;
+}
+
+.cell-img {
+	float:left;
+	margin:2px;
+}
+
+.cell-img > span > img {
+	width:50px;
+}
+
+.font-color-orange {
+	color:orange;
+}
+
+.cell-user-count {
+	margin:8px; 
+	float:right; 
+}
+
+.cell-category {
+	margin:8px; 
+	margin-left:60px;
+}
+
+.cell-name {
+	margin:8px; 
+	margin-left:60px;
+}
+
+
+
+
+
+
+
+
+
+
+

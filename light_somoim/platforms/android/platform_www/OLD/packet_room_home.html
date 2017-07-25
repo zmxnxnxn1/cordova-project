@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+   	<title>Packet</title>
+   	<style>
+   		.bottom-menu-1 {color:#38c !important;}
+   	</style>
+    <script>
+	    $(function() {
+	    	settingApplication(); // 어플리케이션 기본 세팅
+	    });
+    </script>
+    </head>
+    <body>
+    	<div data-role="page" style="height:100%;">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		
+    		<div class="packet_main_img" style="height:200px;">
+					<div class="home-profile-image">
+						<img src="img/main5.jpg" alt="" style="width:100px; height:100px;"/>
+					</div>
+					<div>
+						<a href="javascript:movePage('packet_room_profileModify.html')" class="glyphicon glyphicon-cog home-setting-button">
+						</a>
+					</div>
+    		</div>
+    		
+    		<a href="javascript:location.replace('./design/index.html')" style="margin:40px;">01</a>
+    		<a href="javascript:location.replace('./design2/index.html')" style="margin:40px;">20</a>
+    		<a href="javascript:location.replace('./design3/index.html')" style="margin:40px;">030</a>
+    		<a href="javascript:location.replace('./design4/index.html')" style="margin:40px;">030</a>
+				
+		   	<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+<!--     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+ -->
+ 
+ </html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 			<meta name="format-detection" content="telephone=no">
+      <meta name="msapplication-tap-highlight" content="no">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+      <meta charset="utf-8">
+      <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+      <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+      <link rel="stylesheet" type="text/css" href="css/packet.css">
+   		<script type="text/javascript" src="js/jquery.js"></script>
+    	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    	<script type="text/javascript" src="js/packet.js"></script>
+        <title>Packet</title>
+        <script>
+        
+        $(function(){
+            //window.localStorage.removeItem("userKey");
+            //window.localStorage.setItem("userKey","12345678");
+            
+            setTimeout(function(){
+                var loginKeyCheck=window.localStorage.getItem("userKey");
+            	if(!loginKeyCheck){
+            		location.href="packet_joinApp_main.html";
+            	}else{
+            		location.href="packet_room_home.html";
+            		//location.href="test.html";
+            	}
+            },100);
+        });
+        
+        </script>
+        
+    </head>
+    <body style="height:100%;">
+    	<div data-role="page" style="height:100%;">
+    	<div class="ui-content" style="padding-top:10%;">
+    		<center>
+    		<h1 style="font-size:50px; color:#DBB5C8; font-weight:600"> 어서오세요. 소모임입니다. </h1>
+    		</center>
+    	</div>
+    	</div>
+    </body>
+ 
+ </html>

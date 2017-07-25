@@ -1,0 +1,220 @@
+CREATE TABLE `packet_alarm_list` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`user_seq` INT(11) NULL DEFAULT NULL COMMENT '유저 seq',
+	`name` VARCHAR(255) NULL DEFAULT NULL COMMENT '알람 이름',
+	`message` VARCHAR(255) NULL DEFAULT NULL COMMENT '메세지',
+	`function` VARCHAR(255) NULL DEFAULT NULL COMMENT '실행 스크립트',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=11
+;
+
+
+CREATE TABLE `packet_category_list` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`name` VARCHAR(40) NULL DEFAULT NULL COMMENT '카테고리 이름',
+	`icon_name` VARCHAR(40) NULL DEFAULT NULL COMMENT '아이콘 이름',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=91
+;
+
+
+CREATE TABLE `packet_cell_board` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT COMMENT '시퀀스 번호',
+	`reg_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록 날짜',
+	`del_flag` VARCHAR(2) NULL DEFAULT 'N' COMMENT '삭제 여부',
+	`reg_user_seq` INT(11) NULL DEFAULT NULL COMMENT '작성자 seq',
+	`cell_seq` INT(11) NULL DEFAULT NULL COMMENT '모임 seq',
+	`title` VARCHAR(255) NULL DEFAULT NULL COMMENT '제목',
+	`description` VARCHAR(1023) NULL DEFAULT NULL COMMENT '내용',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=3
+;
+
+
+CREATE TABLE `packet_cell_grade` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`name` VARCHAR(40) NULL DEFAULT NULL COMMENT '권한 이름',
+	`cell_transfer` INT(1) NULL DEFAULT NULL COMMENT '모임장 양도 / 1=on',
+	`cell_leave` INT(1) NULL DEFAULT NULL COMMENT '모임 탈퇴',
+	`cell_delete` INT(1) NULL DEFAULT NULL COMMENT '모임 폐쇄',
+	`cell_modify` INT(1) NULL DEFAULT NULL COMMENT '모임 기본정보 수정',
+	`member_gradeCtl` INT(1) NULL DEFAULT NULL COMMENT '멤버 권한 관리',
+	`member_invite` INT(1) NULL DEFAULT NULL COMMENT '멤버 초대',
+	`member_approve` INT(1) NULL DEFAULT NULL COMMENT '멤버 승인',
+	`member_ban` INT(1) NULL DEFAULT NULL COMMENT '멤버 추방',
+	`board_admin` INT(1) NULL DEFAULT NULL COMMENT '게시판 및 리플 관리',
+	`board_write` INT(1) NULL DEFAULT NULL COMMENT '게시판 글 쓰기',
+	`board_read` INT(1) NULL DEFAULT NULL COMMENT '게시판 글 읽기',
+	`board_reply` INT(1) NULL DEFAULT NULL COMMENT '게시판 댓글 쓰기',
+	`meeting_admin` INT(1) NULL DEFAULT NULL COMMENT '정모 관리',
+	`meeting_create` INT(1) NULL DEFAULT NULL COMMENT '정모 만들기',
+	`meeting_read` INT(1) NULL DEFAULT NULL COMMENT '정모 읽기',
+	`chatting_write` INT(1) NULL DEFAULT NULL COMMENT '채팅 글쓰기',
+	`chatting_read` INT(1) NULL DEFAULT NULL COMMENT '채팅 읽기',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=5
+;
+
+
+CREATE TABLE `packet_cell_inviteList` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`cell_seq` INT(11) NULL DEFAULT NULL COMMENT '모임 seq',
+	`user_seq` INT(11) NULL DEFAULT NULL COMMENT '유저 seq',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=26
+;
+
+
+CREATE TABLE `packet_cell_list` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`name` VARCHAR(40) NULL DEFAULT NULL COMMENT '모임명',
+	`intro` VARCHAR(1023) NULL DEFAULT NULL COMMENT '모임 소개',
+	`category_seq` INT(11) NULL DEFAULT '0' COMMENT '카테고리 seq / 미사용',
+	`location_seq` VARCHAR(10) NULL DEFAULT NULL COMMENT '지역 seq',
+	`user_limit` INT(11) NULL DEFAULT '0' COMMENT '정원 / 미사용',
+	`open` INT(1) NULL DEFAULT '1' COMMENT '공개여부 / 1=공개 / 미사용',
+	`approve` INT(1) NULL DEFAULT '0' COMMENT '승인여부 / 1=필요',
+	`category_name` VARCHAR(255) NULL DEFAULT NULL COMMENT '카테고리 이름',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=2
+;
+
+
+CREATE TABLE `packet_cell_reply` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT COMMENT '시퀀스 번호',
+	`reg_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록 날짜',
+	`del_flag` VARCHAR(2) NULL DEFAULT 'N' COMMENT '삭제 여부',
+	`reg_user_seq` INT(11) NULL DEFAULT NULL COMMENT '등록자 seq',
+	`board_seq` INT(11) NULL DEFAULT NULL COMMENT '게시글 seq',
+	`description` VARCHAR(511) NULL DEFAULT NULL COMMENT '내용',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=7
+;
+
+
+CREATE TABLE `packet_cell_userList` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`user_seq` INT(11) NULL DEFAULT NULL COMMENT '유저 seq',
+	`joinCell_seq` INT(11) NULL DEFAULT NULL COMMENT '가입한 모임 seq',
+	`grade_seq` INT(11) NULL DEFAULT NULL COMMENT '모임 권한 seq',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=5
+;
+
+
+CREATE TABLE `packet_location_list` (
+	`seq` INT(10) NOT NULL COMMENT '시퀀스 번호',
+	`reg_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록 날짜',
+	`del_flag` VARCHAR(2) NULL DEFAULT 'N' COMMENT '삭제 여부',
+	`location_number` VARCHAR(10) NULL DEFAULT NULL COMMENT '지역 번호',
+	`name` VARCHAR(20) NULL DEFAULT NULL COMMENT '지역 이름',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+CREATE TABLE `packet_meeting_list` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`reg_user_seq` INT(11) NULL DEFAULT NULL COMMENT '모임 생성자 seq',
+	`cell_seq` INT(11) NULL DEFAULT NULL COMMENT '모임 seq',
+	`title` VARCHAR(255) NULL DEFAULT NULL COMMENT '정모 이름',
+	`meeting_date` VARCHAR(127) NULL DEFAULT NULL COMMENT '정모 날짜',
+	`meeting_time` VARCHAR(127) NULL DEFAULT NULL COMMENT '정모 시간',
+	`location` VARCHAR(127) NULL DEFAULT NULL COMMENT '정모 장소',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=2
+;
+
+
+CREATE TABLE `packet_meeting_userList` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`meeting_seq` INT(11) NULL DEFAULT NULL COMMENT '미팅 seq',
+	`user_seq` INT(11) NULL DEFAULT NULL COMMENT '유저 seq',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=2
+;
+
+
+CREATE TABLE `packet_user_advice` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT,
+	`reg_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`del_flag` VARCHAR(2) NOT NULL DEFAULT 'N',
+	`reg_user_seq` INT(11) NULL DEFAULT NULL COMMENT '작성자 seq',
+	`advice` VARCHAR(1023) NULL DEFAULT NULL COMMENT '개선',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=3
+;
+
+
+CREATE TABLE `packet_user_list` (
+	`seq` INT(10) NOT NULL AUTO_INCREMENT COMMENT '시퀀스 번호',
+	`reg_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP COMMENT '등록 날짜',
+	`del_flag` VARCHAR(2) NULL DEFAULT 'N' COMMENT '삭제 여부',
+	`user_key` INT(11) NULL DEFAULT NULL COMMENT '사용자 식별 키',
+	`id` VARCHAR(63) NULL DEFAULT NULL COMMENT '아이디',
+	`password` VARCHAR(63) NULL DEFAULT NULL COMMENT '비밀번호',
+	`sex` INT(1) NULL DEFAULT NULL COMMENT '성별 / 1:남자 2:여자',
+	`phone_number` VARCHAR(20) NULL DEFAULT NULL COMMENT '핸드폰 번호',
+	`age` INT(11) NULL DEFAULT NULL COMMENT '나이',
+	`nickname` VARCHAR(50) NULL DEFAULT NULL COMMENT '닉네임',
+	`location_number` VARCHAR(10) NULL DEFAULT NULL COMMENT '사는지역 seq',
+	`memo` VARCHAR(400) NULL DEFAULT NULL COMMENT '메모',
+	PRIMARY KEY (`seq`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=6
+;
+
+

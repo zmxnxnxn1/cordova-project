@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Packet</title>        
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+   	<script>
+    	
+   	$(document).ready(function() {
+   		putLoginUserKeyInput(); // 유저의 키값을 INPUT 박스에 넣는다.
+   	});
+   	
+ 		// 키값인 이메일 주소를 INPUT 에 넣는다.
+   	function putLoginUserKeyInput() {
+   		$('input[name=user_key]').val(getUserStorageKey());
+   	}
+    	
+		// 상세내용 가입 폼값 전송
+ 		function putUserInformationSub() {
+		
+ 			var putData = $("form[name=userInformationMainForm]").serialize();
+ 			
+ 			$.ajax ({
+				type:"GET",
+				url:jspFileRoute + "packet_joinApp_insertSub.jsp",
+				dataType:'JSON',
+				data:putData,
+				success:function(data) {
+					moveHome();
+				},
+				error:function(data) {
+					alert('error');
+					console.log(data);
+				}
+			});
+     }
+	 
+    </script>
+    <style>
+    	.packet_wrap{
+    		width:100%;
+    		padding-top:20px;
+    		padding-bottom:20px;
+    		background-color:white;
+    	}
+    	.packet_input_apply{
+    		height:100%;
+    		width:100%;
+    		border:0;
+    	}
+
+    	.packet_td_apply{
+    		height:40px; 
+    		border-bottom:1px solid #BDBDBD; 
+    		padding-bottom:5px;    					
+    		padding-top:5px;    					
+    	}
+    	.packet_td_apply_end{
+    		height:40px; 
+    		padding-bottom:5px;    					
+    		padding-top:5px;    					
+    	}
+
+    	.packet_td_apply_l{
+    		height:40px; width:80%; 
+    		border-bottom:1px solid #BDBDBD; 
+    		padding-bottom:5px;    					
+    		padding-top:5px;    					
+    	}
+    	.packet_td_apply_r{
+    		height:40px; width:20%; 
+    		border-bottom:1px solid #BDBDBD; padding-bottom:5px;    					
+    		padding-top:5px;    					
+    		padding-left:3px;    					
+    	}
+    </style>
+    </head>
+    <body>
+    	<form method="GET" name="userInformationMainForm" accept-charset="utf-8">
+    	<input type="hidden" name="user_key" />
+    	<div data-role="page" style="height:100%; padding-top:70px;">
+    		<div class="packet_wrap">
+    			<table style="width:90%; margin:auto;">
+    				<tr>
+    					<td class="packet_td_apply">    					
+    						<input type="text" class="packet_input_apply" data-role="none" name="name" id="name" placeholder="Name">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">    					
+    						<input type="number" class="packet_input_apply" data-role="none" name="phone_number" id="phone_number" placeholder="Phone Number">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">    					
+    						<input type="text" class="packet_input_apply" data-role="none"  name="job" id="job" placeholder="Job">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">    					
+    						<input type="number" class="packet_input_apply" data-role="none" name="location" id="location" placeholder="거주지역">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">
+    					<input type="text" class="packet_input_apply" data-role="none" name="memo" id="memo" placeholder="MEMO">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2">    					
+    						<button type="button" data-role="none" class="btn btn-block btn-success" style="margin-top:10px; heigth:40px;" onclick="putUserInformationSub()">작성완료</button>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2">    					
+    						<button type="button" data-role="none" class="btn btn-block btn-primary" style="margin-top:10px; heigth:40px;" onclick="moveHome()">다음에 작성</button>
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+			</div>
+		</form>
+	</body>
+</html>
+ 

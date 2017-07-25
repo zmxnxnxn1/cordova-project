@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+    <head>        
+	 		<meta name="format-detection" content="telephone=no">
+	    <meta name="msapplication-tap-highlight" content="no">
+	    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	    <meta charset="utf-8">
+			<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+	    <link rel="stylesheet" type="text/css" href="css/packet.css">
+	    <link rel="stylesheet" type="text/css" href="css/apply.css">
+	    <link rel="stylesheet" type="text/css" href="css/cell.css">
+	   	<script type="text/javascript" src="js/jquery.js"></script>
+	   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	   	<script type="text/javascript" src="js/packet.js"></script>
+      <title>Packet</title>
+      <style>
+      	.bottom-menu-2 {color:#38c !important;}
+      	.packet_locationSelect{
+      		display:none;
+      	}
+      	.packet_wrap{
+      		width:100%;
+      		padding-top:20px;
+      		padding-bottom:20px;
+      		background-color:white;
+      	}
+      	.packet_input_apply{
+      		height:100%;
+      		width:100%;
+      		border:0;
+      	}
+
+      	.packet_td_apply{
+      		height:40px; 
+      		border-bottom:1px solid #BDBDBD; 
+      		padding-bottom:5px;    					
+      		padding-top:5px;    					
+      	}
+      	.packet_td_apply_end{
+      		height:40px; 
+      		padding-bottom:5px;    					
+      		padding-top:5px;    					
+      	}
+
+      	.packet_td_apply_l{
+      		height:40px; width:80%; 
+      		border-bottom:1px solid #BDBDBD; 
+      		padding-bottom:5px;    					
+      		padding-top:5px;    					
+      	}
+      	.packet_td_apply_r{
+      		height:40px; width:20%; 
+      		border-bottom:1px solid #BDBDBD; padding-bottom:5px;    					
+      		padding-top:5px;    					
+      		padding-left:3px;    					
+      	}
+      </style>
+		<script>
+		 $(function(){
+			
+			// [STR] 카테고리 선택
+		 	$("#packet_activeCategory").bind("tap, click",function(){
+		 		getCellCategoryList(); // 카테고리 리스트를 불러온다.
+      	$.mobile.changePage( "#packet_categorySelect", { transition: "flip", changeHash: false });
+		 	});
+			
+			$(".packet_category").bind("tap, click",function(){
+				$.mobile.changePage( "#packet_cellCreate", { transition: "flip", changeHash: false });
+				$("#packet_activeCategory").val($(this).text());
+			});
+			// [END] 카테고리 선택
+			
+			// [STR] 모임 지역 선택
+		 	$("#packet_activeLocation").bind("tap, click",function(){
+      	$.mobile.changePage( "#packet_locationSelect", { transition: "flip", changeHash: false });
+		 	});
+			
+			$(".packet_sido").bind("tap, click",function(){
+				$.mobile.changePage( "#packet_cellCreate", { transition: "flip", changeHash: false });
+				$("#packet_activeLocation").val($(this).text());
+				$("input[name=packet_locationNumber]").val("0" + this.value);
+			});
+			// [END] 모임 지역 선택
+			
+		});
+		
+		// 카테고리 리스트를 불러온다.
+		function getCellCategoryList() {
+ 			
+ 			$.ajax ({
+				type:"GET",
+				url:jspFileRoute + "packet_cell_categoryList.jsp",
+				dataType:'JSON',
+				success:function(data) {
+					createCategoryListHtml(data["result"]);
+				},
+				error:function(data) {
+				}
+			});
+		}
+		
+		// 카테고리 리스트를 HTML를 만들어 넣는다.
+		function createCategoryListHtml(data) {
+			var Html = "";
+			for (key in data) {
+				Html += '<li class="packet_category ui-block-a" onclick="javascript:selectCategory(this, '+data[key]["seq"]+')">';
+				Html += '<a class="ui-link ui-btn" href="">'+data[key]["categoryName"]+'</a>';
+				Html += '</li>';
+			}
+			
+			$(".categoryList").html(Html);
+		}
+		
+		// 카테고리를 선택한다.
+		function selectCategory(obj, seq) {
+			$.mobile.changePage( "#packet_cellCreate", { transition: "flip", changeHash: false });
+			$("#packet_activeCategory").val($(obj).text());
+			$("input[name=packet_categorySeq]").val(seq);
+		}
+		
+		// 모임 만들기
+		function cellCreate() {
+
+			var categorySeq = $("input[name=packet_categorySeq]").val();
+			var locationSeq = $("input[name=packet_locationNumber]").val();
+			var cellName = $("input[name=packet_cellName]").val();
+			var intro = $("input[name=packet_cellIntro]").val();
+			var limit = $("input[name=packet_cellLimit]").val();
+			$("input[name=packet_open]").is(":checked") == true ? open=1 : open=0;
+			$("input[name=packet_approve]").is(":checked") == true ? approve=1 : approve=0;
+			var userKey = getUserStorageKey();
+ 			
+ 			$.ajax ({
+				type:"GET",
+				url:jspFileRoute + "packet_cell_create.jsp",
+				dataType:'JSON',
+				data:{"categorySeq":categorySeq,"locationSeq":locationSeq,"cellName":cellName,"intro":intro,"limit":limit,"open":open,"approve":approve,"userKey":userKey},
+				success:function(data) {
+					alert('모임 만들기 완료!');
+					
+					moveUrl = 'packet_cell_home.html#' + data["result"][0]["seq"];
+					movePage(moveUrl);
+				},
+				error:function(data) {}
+			});
+		}
+		
+		
+		$(document).ready(function() {
+			settingApplication(); // 어플리케이션 기본 세팅
+		});
+		
+		</script>
+    </head>
+    <body>
+    	<div data-role="page" id="packet_cellCreate" style="height:100%;">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+    		
+    		<div class="packet_wrap">
+    			<table style="width:90%; margin:auto;">
+						<tr>
+							<td class="packet_td_apply_l">
+								<input type="text" class="packet_input_apply" data-role="none" name="packet_activeCategory" id="packet_activeCategory" placeholder="카테고리를 선택하세요" readonly>
+								<input type="hidden" name="packet_categorySeq">
+							</td>
+						</tr>
+						<tr>
+							<td class="packet_td_apply_l">
+								<input type="text" class="packet_input_apply" data-role="none" name="packet_cellLocation" id="packet_activeLocation" placeholder="모임 지역을 선택해주세요" readonly>
+								<input type="hidden" name="packet_locationNumber">
+							</td>
+						</tr>
+    				<tr>
+    					<td class="packet_td_apply">    					
+    						<input type="text" class="packet_input_apply" data-role="none"  name="packet_cellName" id="packet_cellName" placeholder="모임 이름을 정해주세요">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td class="packet_td_apply">    					
+    						<input type="text" class="packet_input_apply" data-role="none" name="packet_cellIntro" id="packet_cellIntro" placeholder="모임 간략 소개">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td class="packet_td_apply">    					
+    						<input type="number" class="packet_input_apply" data-role="none" name="packet_cellLimit" placeholder="정원">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td class="packet_td_apply">
+    						<div>
+    							<div style="float:left;">비공개 모임</div>
+    							<input type="checkbox" name="packet_open" value="1" style="margin:0; left:5.8em; width:18px;">
+    						</div>
+    						<div>
+    							<div style="float:left; margin-left:80px;">멤버 승인</div>
+    							<input type="checkbox" name="packet_approve" value="1" style="margin:0; left:15.1em; width:18px;">
+    						</div>
+    					</td>
+    				</tr>
+    			</table>
+    			
+    			<div style="margin:0 auto; margin-top:40px; width:80%;">
+    				<button data-role="none" onclick="javascript:cellCreate();" class="btn btn-block btn-success" style="margin-top:10px; heigth:40px;">모임 만들기</button>
+    			</div>
+
+    		</div>
+		</div>
+		
+		<section id="packet_locationSelect" data-role="page">
+			<div class="ui-content packet_header">
+   			<span class="packet_username">Packet</span>
+   		</div>
+			<div data-role="navbar" style="margin-top:100px;">
+				<ul>
+					<li class="packet_sido" value="02"><a>서울특별시</a></li>
+					<li class="packet_sido" value="031"><a>경기도</a></li>
+					<li class="packet_sido" value="032"><a>인천광역시</a></li>
+					<li class="packet_sido" value="033"><a>강원도</a></li>
+					<li class="packet_sido" value="041"><a>충청남도</a></li>
+					<li class="packet_sido" value="042"><a>대전광역시</a></li>
+					<li class="packet_sido" value="043"><a>충청북도</a></li>
+					<li class="packet_sido" value="051"><a>부산광역시</a></li>
+					<li class="packet_sido" value="052"><a>울산광역시</a></li>
+					<li class="packet_sido" value="053"><a>대구광역시</a></li>
+					<li class="packet_sido" value="054"><a>경상북도</a></li>
+					<li class="packet_sido" value="055"><a>경상남도</a></li>
+					<li class="packet_sido" value="061"><a>전라남도</a></li>
+					<li class="packet_sido" value="062"><a>광주광역시</a></li>
+					<li class="packet_sido" value="063"><a>전라북도</a></li>
+					<li class="packet_sido" value="064"><a>제주도</a></li>
+				</ul>
+			</div>
+		</section>
+		
+		<section id="packet_categorySelect" data-role="page" style="margin-bottom:100px;">
+			<div class="ui-content packet_header">
+   			<span class="packet_username">Packet</span>
+   		</div>
+			<div data-role="navbar" style="margin-top:90px;">
+				<ul class="categoryList">
+					<li class="packet_category"><a href=""></a></li>
+				</ul>
+			</div>
+		</section>
+		<div class="packet_footer"></div>
+	</body>
+</html>
+ 

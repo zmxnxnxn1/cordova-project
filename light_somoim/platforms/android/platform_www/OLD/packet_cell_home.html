@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+   	<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+    <link rel="stylesheet" type="text/css" href="css/apply.css">
+    <link rel="stylesheet" type="text/css" href="css/cell.css">
+   	<script type="text/javascript" src="js/jquery.js"></script>
+   	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+   	<script type="text/javascript" src="js/packet.js"></script>
+    <title>Packet</title>
+    <style>
+    	.bottom-menu-2 {color:#38c !important;}
+    </style>
+		<script>
+		$(document).bind("mobileinit", function(){
+			  
+	  $.extend($.mobile , {
+	   defualtTransition :'slide',   //<- 페이지 이동 기본 애니메이션 효과 설정
+	   loadingMessage : 'Now Loading...', //<-페이지를 불러올 대 나타나는 로딩 메시지   
+	   ajaxEnabled : true,  //<- jQuery Mobile 는 기본으로 모든 페이지 이동을 ajax로 처리한다. ajax처리가 아닌 페이지 직접이동을 할때 설정 
+	   autoInitialize:true, //<- false일 경우 $.mobile.initializePage() 메서드가 호출되기 전까지 초기화 작업 안함. 특별한 작업 후 애플리케이션이 나타나도록 할 때 사용
+	   metaViewportContent : 'width=device-width, minimum-scale=1, maximum-scale=1'
+	      // false로 지정하면 메타 태그가 생성되지 않음. 뷰포트 설정값 변경 할대 사용  
+	  });
+	 })
+
+		
+		
+			$(document).ready(function() {
+				settingApplication(); // 어플리케이션 기본 세팅
+				callCellHome(); // 모임 홈 불러오기
+			});
+			
+			// 모임기본정보, 모임멤버,모임초대 불러오기
+			function callCellHome() {
+				createUserInviteList(); // 멤버 초대 유져 INSERT
+				getCellInfo(); // 모임 기본 정보
+				getCellUserList(); // 모임 멤버 리스트
+				getCellStateControButton(); // 모임 컨트롤 버튼
+				getMeetingList() // 미팅 리스트
+				
+				
+			}
+			
+			
+			// 모임 정보를 불러온다.
+			function getCellInfo() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_homeInfo.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						var Html = "";
+						
+						Html += '<img src="img/main2.jpg" alt="" style="width:90%; height:200px; margin:5%;"/>';
+						Html += '<div style="width:90%; margin:0 5% 0 5%; text-align:center; line-height:30px;">';
+						Html += '	<div style="font-size:1.2em; font-weight:bold;">'+data["result"][0]["cellName"]+'</div>';
+						Html += '	<div style="color:brown; text-align:left;">'+data["result"][0]["cellIntro"]+'</div>';
+						Html += '	<div style="color:green; text-align:right;">'+data["result"][0]["locationName"]+'</div>';
+						Html += '</div>';
+						
+						$("#cellHomeInfo").html(Html);
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 멤버 리스트를 불러온다.
+			function getCellUserList() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userList.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+
+						// 멤버 컨트롤 권한중 하나라도 있으면 1 / 양도,권한관리, 멤버승인, 멤버추방
+						var cellAdmin = 0;
+						if (data["cellAdmin"][0]["cell_transfer"] || data["cellAdmin"][0]["member_approve"] || data["cellAdmin"][0]["member_ban"] || data["cellAdmin"][0]["member_gradeCtl"]) {
+							var cellAdmin = 1;
+						}
+							
+						var Html = "";
+						for (key in data["result"]) {
+							Html += '<div style="clear:both; float:left;">';
+							Html += '	<img src="img/main2.jpg" alt="" style="width:80px; height:80px; margin:10px;"/>';
+							Html += '</div>';
+							Html += '<div style="float:left; margin-top:15px;">';
+							Html += '	<div style="margin:10px; font-weight:bold;">'+data["result"][key]["userName"]+'</div>';
+							Html += '	<div style="margin:10px;">'+data["result"][key]["userMemo"]+'</div>';
+							Html += '</div>';
+							Html += '<div style="color:orange; float:right; margin-right:15px; margin-top:25px;">'+data["result"][key]["userGradeName"];
+							// 멤버 관리
+							if (cellAdmin && data["result"][key]["grade_seq"] != 1) {
+								Html += '<br /><div style="color:black; float:right; margin-top:10px;">';
+								Html += '<select name="memberControlSelectBox" seq="'+data["result"][key]["seq"]+'"onchange="memberControl(this)" style="font-size:0.8em">';
+								Html += '<option value="0" selected>관리</option>';
+								// 가입 승인
+								if (data["cellAdmin"][0]["member_approve"] && data["result"][key]["userGradeName"] == "가입대기") {
+									Html += '<option value="1">가입 승인</option>';
+								}
+								// 모임장 양도
+								if (data["cellAdmin"][0]["cell_transfer"]) {
+									Html += '<option value="2">모임장 양도</option>';
+								}
+								// 멤버 권한 변경
+								if (data["cellAdmin"][0]["cell_transfer"] && (data["result"][key]["grade_seq"] == 2 || data["result"][key]["grade_seq"] == 3)) {
+									var changeGradeName = "";
+									data["result"][key]["grade_seq"] == 2 ? changeGradeName = "일반회원으로" : changeGradeName = "운영진으로";
+									Html += '<option value="3">'+changeGradeName+'</option>';
+								}
+								// 멤버 추방
+								if (data["cellAdmin"][0]["cell_transfer"]) {
+									Html += '<option value="4">멤버 추방</option>';
+								}
+								Html += '</select>';
+								Html += '</div>';
+							}
+							Html += '</div>';
+							
+						}
+
+						$("#cellUserList").html(Html);						
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 멤버 관리
+			function memberControl(obj) {
+				if (obj.value == 0) return;
+				seq = $(obj).attr("seq");
+				
+				obj.value == 1 ? cellUserApprove(seq) : ""; // 가입승인
+				obj.value == 2 ? cellMasterTransfer(seq) : ""; // 모임장 양도
+				obj.value == 3 ? cellUserGradeChange(seq) : ""; // 멤버 권한 변경
+				obj.value == 4 ? cellUserBan(seq) : ""; // 멤버 추방
+			}
+			
+			// 모임 멤버 초대 가능 리스트를 불러온다.
+			function getCellUserInviteList() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userInviteList.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						
+						if (data["invite"][0]["memberInvite"] == 1) { // 모임 초대 권한이 있을 경우에만 초대기능을 넣는다.
+							var Html = '<div style="margin-left:10px; margin-top:15px; color:white;">멤버 초대</div>';
+							for (key in data["result"]) {
+								Html += '<div style="clear:both; float:left;">';
+								Html += '	<img src="img/main4.jpg" alt="" style="width:80px; height:80px; margin:10px;"/>';
+								Html += '</div>';
+								Html += '<div style="float:left; margin-top:15px;">';
+								Html += '	<div style="margin:25px 10px 10px 10px; font-weight:bold;">'+data["result"][key]["userName"]+'</div>';
+								Html += '</div>';
+								Html += '<div style="margin-right:55px; margin-top:42px; float:right;">';
+								Html += '	<input type="checkbox" name="userInviteSeq[]" style="width:20px; height:20px; margin:0;" value="'+data["result"][key]["userSeq"]+'" />';
+								Html += '</div>';
+							}
+							Html += '<div style="clear:both; float:right; margin:0 20px 30px;">';
+							Html += '	<input type="button" value="초대하기" onclick="userInvite()" />';
+							Html += '</div>';
+							
+							$("#cellUserInviteList").html(Html);
+							
+						}
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 멤버를 초대한다.
+			function userInvite() {
+
+				var inviteUserList = "";
+				$("#cellUserInviteList div input[type=checkbox]").each(function(index) {
+					if ($(this).is(":checked")) {
+						inviteUserList += this.value + ";";
+					}
+				});
+				
+				inviteUserList = inviteUserList.slice(0, -1);
+				
+				if (inviteUserList == "") {
+					alert('초대할 멤버를 선택하십시오.');
+					return;
+				}
+				
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_alarm_inviteInsert.jsp",
+					dataType:'JSON',
+					data:{"cellSeq":cellSeq, "UserList":inviteUserList},
+					success:function(data) {
+						alert("멤버를 초대하였습니다.");
+						location.reload();
+					},
+					error:function(data) {}
+				});
+				
+			}
+			
+			// 멤버 초대할 유져를 만든다.
+			function createUserInviteList() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_createInviteList.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					async: false,
+					success:function(data) {
+						getCellUserInviteList(); // 모임 멤버 초대 가능 리스트
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 컨트롤 버튼을 불러온다.
+			// 가입하기, 탈퇴하기, 삭제하기
+			function getCellStateControButton() {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_stateControl.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						var Html = "";
+						
+						if (data["CellJoin"][0]["gradeSeq"] == 0) {
+							Html += '<input type="button" style="width:100%;" value="가입하기" onclick="cellUserJoin()" />';
+						} else if (data["CellControl"][0]["cellLeave"] == 1) {
+							Html += '<input type="button" style="width:100%;" value="탈퇴하기" onclick="cellUserLeave()" />';
+						} else if (data["CellControl"][0]["cellDelete"] == 1) {
+							Html += '<input type="button" style="width:100%;" value="모임 삭제" onclick="cellDelete()" />';
+						}
+						
+						$("#CellControl").html(Html);	
+						
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 가입하기
+			function cellUserJoin() {
+				
+				if (!confirm('정말로 가입하시겠습니까?')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userJoin.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						console.log(data);
+						if (data["result"] == 3) {
+							alert('가입이 완료되었습니다.');
+						} else if (data["result"] == 4) {
+							alert('가입을 요청하였습니다. \n승인 후 가입됩니다.');
+						}
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 탈퇴하기
+			function cellUserLeave() {
+				if (!confirm('정말로 모임을 탈퇴 하시겠습니까?')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userLeave.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						alert('탈퇴 되었습니다.');
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임 삭제하기
+			function cellDelete() {
+				if (!confirm('정말로 모임을 탈퇴 하시겠습니까?\n삭제 이후에는 복구가 불가능합니다.')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_delete.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+						alert('모임이 삭제되었습니다.');
+						moveCell();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 가입 승인하기
+			function cellUserApprove(seq) {
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var approveUserSeq = seq; // 승인 받을 유저 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userApprove.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "approveUserSeq":approveUserSeq},
+					success:function(data) {
+						alert("가입승인이 완료되었습니다.");
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 모임장 양도하기
+			function cellMasterTransfer(seq) {
+				if (!confirm('정말로 모임장을 해당유저에게 양도하시겠습니까?')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var masterUserSeq = seq; // 모임장 받을 유저 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_masterTransfer.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "masterUserSeq":masterUserSeq},
+					success:function(data) {
+						alert("모임장 양도를 완료하였습니다.");
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 멤버 권한 변경 / 운영진->일반회원 / 일반회원->운영진
+			function cellUserGradeChange(seq) {
+				if (!confirm('해당 멤버의 등급을 변경하시겠습니까?')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var gradeChangeUserSeq = seq; // 등급 변경 받을 유저 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_gradeChange.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "gradeChangeUserSeq":gradeChangeUserSeq},
+					success:function(data) {
+						alert("멤버등급 변경을 완료하였습니다.");
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 멤버 추방
+			function cellUserBan(seq) {
+				if (!confirm('해당 멤버를 추방하시겠습니까?')) return;
+				
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				var banUserSeq = seq; // 추방 당하는 유저 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_cell_userBan.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq, "banUserSeq":banUserSeq},
+					success:function(data) {
+						alert("추방을 완료하였습니다.");
+						location.reload();
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 정모 리스트를 불러온다.
+			function getMeetingList() {
+				var userKey = getUserStorageKey(); // 유저키
+				var cellSeq = location.hash.replace(/^#/, ''); // 모임 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_meeting_list.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "cellSeq":cellSeq},
+					success:function(data) {
+
+						if (data["meetingCreateGrade"] == 1) { // 미팅 만들기 권한이 있으면 만들기 버튼을 생성한다.
+							$("#meetingCreateBox").html('<input type="button" value="정모 만들기" onclick="createMeeting()" style="color:black;" />');
+						}
+						
+						var Html = '';
+						
+						if (data["meetingReadGrade"] == 1) { // 미팅 읽기 권한이 있으면 미팅 리스트를 출력한다.
+							for (key in data["result"]) {
+								Html += '<div style="clear:both; border-bottom:1px solid black; margin-bottom:30px; padding-bottom:10px;">';
+								Html += '	<div>';
+								Html += '		<div><span>정모 이름 : </span><span>'+data["result"][key]["title"]+'</span></div>';
+								Html += '		<div><span>정모 지역 : </span><span>'+data["result"][key]["location"]+'</span></div>';
+								Html += '		<div><span>정모 비용 : </span><span>'+data["result"][key]["money"]+'</span></div>';
+								Html += '		<div><span style="font-size:0.9em;">'+data["result"][key]["meeting_date"]+' '+data["result"][key]["meeting_time"]+'</span></div>';
+								Html += '	</div>';
+								Html += '	<div style="margin-top:10px; text-align:center">';
+								if (data["result"][key]["enterMeeting"] == 0) {
+									//Html += '		<span><button style="width:120px;" onclick="enterMeetingControl('+data["result"][key]["seq"]+', 1)">참가신청</button></span>';
+									Html += '		<span><a style="width:120px;" href="javascript:enterMeetingControl('+data["result"][key]["seq"]+', 1)" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">참가신청</a></span>';
+								} else {
+									Html += '		<span><a style="width:120px;" href="javascript:enterMeetingControl('+data["result"][key]["seq"]+', 0)" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">참가취소</a></span>';	
+								}
+								Html += '		<span>';
+								
+								Html += '			<a href="#popupBasic_'+key+'" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">참가자 목록</a>';
+								Html += '			<div data-role="popup" id="popupBasic_'+key+'">';
+								Html +=	'				<p>';
+								Html +=	'<div style="padding:5px 10px 5px 10px; font-weight:bold; border-bottom:1px solid black; margin-bottom:10px;">참가자 목록</div>';
+								for (key2 in data["result"][key]["enterList"]) {
+									Html +=	'<div style="padding:5px 10px 5px 10px; font-weight:bold; text-align:center">'+data["result"][key]["enterList"][key2]["enterName"]+'</div>';
+								}
+								Html += '				</p>';
+								Html += '			</div>';
+								Html += '		</span>';
+								
+								Html += '	</div>';
+								Html += '</div>';
+								
+							}
+							$("#meetingList").html(Html).trigger("create");
+							
+						}
+						
+					},
+					error:function(data) {}
+				});
+			}
+			
+			// 정모참가 또는 정모취소를 한다.
+			function enterMeetingControl(meetingSeq, meetingEnter) {
+				var userKey = getUserStorageKey(); // 유저키
+				var meetingSeq = meetingSeq; // 미팅 seq
+				
+	 			$.ajax ({
+					type:"GET",
+					url:jspFileRoute + "packet_meeting_enter.jsp",
+					dataType:'JSON',
+					data:{"userKey":userKey, "meetingSeq":meetingSeq, "meetingEnter":meetingEnter},
+					success:function(data) {
+						var enterResult = "";
+						data["result"] == 1 ? enterResult = "참가신청을" : enterResult = "참가취소를";
+						
+						location.reload();
+						alert(enterResult+ " 완료하였습니다.")
+					},
+					error:function(data) {}
+				});
+			}
+			
+		</script>
+    </head>
+    	<div data-role="page">
+    		<div data-role="panel" id="panel1" data-display="push" data-position="right" data-position-fixed="true" style="background-color:white">
+    		</div>
+    		<div class="ui-content packet_header">
+    			<span class="packet_username">Packet</span>
+    			<a href="#panel1" class="packet_panel_icon">
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    				<span class="packet_icon_bar"></span>
+    			</a>
+    		</div>
+   			
+   			<div class="cell-top-menu">
+   				<ul class="nav nav-tabs">
+	   				<li role="presentation" onclick="changeCellTopMenuActive(1)" class="active"><a href="#">정보</a></li>
+	   				<li role="presentation" onclick="changeCellTopMenuActive(2)"><a href="#">게시판</a></li>
+					  <li role="presentation" onclick="changeCellTopMenuActive(3)"><a href="#">채팅</a></li>
+					</ul>
+   			</div>
+   			
+   			<div style="background-color:white;" id="cellHomeInfo"></div> <!-- 모임 기본 정보 -->
+        
+   			<div style="clear:both; background-color:gray;">
+   				<div style="margin-left:10px; margin-top:15px; color:white; ">정모 정보
+						<div id="meetingCreateBox" style="float:right;"></div>
+					</div>
+					<div id="meetingList" style="background-color:white; padding:10px; margin-bottom:10px; clear:both;"></div>
+				</div>
+				
+   			<div style="background-color:gray; clear:both;"> <!-- 모임 멤버 리스트 -->
+   				<div style="margin-left:10px; margin-top:15px; color:white;">멤버 리스트</div>
+   				<div id="cellUserList"></div>
+   			</div>
+   			
+   			<div id="cellUserInviteList" style="clear:both; background-color:gray;"></div> <!-- 모임 초대 리스트 -->
+   			
+   			<div id="CellControl" style="clear:both; margin:5%;"></div> <!-- 모임 컨트롤 버튼 -->
+   			
+   			<div style="clear:both; height:80px;">&nbsp;</div>
+   			<div class="packet_footer"></div>
+    	</div><!-- page -->
+    </body>
+ </html>
+    	

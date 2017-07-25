@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Packet</title>
+ 		<meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta charset="utf-8">
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome/awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/packet.css">
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript" src="js/packet.js"></script>
+		
+		<script>
+       // 이메일 유효성 체크
+       function checkUserEmailValid(value) {
+         var regex=/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;   
+				
+         if (regex.test(value) === false) {
+         	return false;
+         } else {  
+         	return true;
+         }  
+       }
+       
+       // 이메일 중복확인
+			function putUserEmailCheck() {
+       	
+	    	// 이메일 유효성 검사
+	    	var email = $("input[name=email]").val();
+				if (!checkUserEmailValid(email)) {
+					alert('올바른 이메일 주소를 입력하세요');
+					return;
+				} else if (email.length > 90) {
+					alert('이메일은 최대 90자 까지 가능합니다.');
+					return;
+				}
+				
+				var putData = $("input[name=email]").serialize();
+				
+				$.ajax ({
+					type:"POST",
+					url:jspFileRoute + "packet_joinApp_emailCheck.jsp",
+					dataType:'JSON',
+					data:putData,
+					success:function(data) {
+						if (data['result'] == 0) {
+							alert('사용가능한 메일입니다.');
+							$('input[name=emailCheck]').val('1');
+						} else {
+							alert('중복된 메일입니다.');
+							$('input[name=emailCheck]').val('0');
+							return;
+						}
+					},
+					error:function(data) {
+						alert('error');
+						console.log(data);
+					}
+				});
+		  }
+	    
+			// 닉네임 중복확인
+			function putUserNicknameCheck() {
+				
+				var nickname = $("input[name=nickname]").val();
+				if (!nickname) {
+					alert('닉네임을 적어 주십시오.');
+					$('input[name=nickname]').focus();
+					return;
+				} else if (nickname.length > 20) {
+					alert('닉네임은 20자까지 가능합니다.');
+					return;
+				}
+       	
+				var putData = $("input[name=nickname]").serialize();
+				
+				$.ajax ({
+					type:"POST",
+					url:jspFileRoute + "packet_joinApp_nicknameCheck.jsp",
+					dataType:'JSON',
+					data:putData,
+					success:function(data) {
+						if (data['result'] == 0) {
+							alert('사용가능한 닉네임입니다.');
+							$('input[name=nicknameCheck]').val('1');
+						} else {
+							alert('중복된 닉네임입니다.');
+							$('input[name=nicknameCheck]').val('0');
+							return;
+						}
+					},
+					error:function(data) {
+						alert('errornickname');
+						console.log(data);
+					}
+				});
+		  }
+			
+			// 가입하기 폼값 전송
+   		function putUserInformationMain() {
+				
+				// 폼값과 길이 체크
+				if (!formValueCheck()) {
+					return;
+				} else if (!formLengthCheck()) {
+					return;
+				}
+   			
+   			var putData = $("form[name=userInformationMainForm]").serialize();
+   			
+   			$.ajax ({
+					type:"POST",
+					url:jspFileRoute + "packet_joinApp_insertMain.jsp",
+					dataType:'JSON',
+					data:putData,
+					success:function(data) {
+						setUserKey(data['userKey']);
+						location.href="packet_joinApp_sub.html";
+					},
+					error:function(data) {
+					}
+				});	
+       }
+			
+   		// 폼에 들어있는 값이 정상적으로 들어있는지 체크한다.
+			function formValueCheck() {
+				if ($('input[name=emailCheck]').val() == "0") {
+					alert('이메일 중복체크를 하십시오.');
+					return false;
+				} else if ($('input[name=nicknameCheck]').val() == "0") {
+					alert('닉네임 중복체크를 하십시오.');
+					return false;
+				} else if ($('input[name=password]').val() != $('input[name=passwordCheck]').val()) {
+					alert('비밀번호가 서로 다릅니다.\n 다시 확인하십시오.');
+					return false;
+				} else {
+					return true;
+				}
+			}
+			
+			// 폼에 들어있는 값의 길이가 너무 적거나 많은지 체크한다.
+			function formLengthCheck() {
+				if (!$('input[name=password]').val()) {
+					alert('비밀번호를 작성하여 주십시오.');
+					$('input[name=password]').focus();
+					return false;
+				} else if (!$('input[name=birth]').val()) {
+					alert('생년월일을 작성하여 주십시오.');
+					$('input[name=birth]').focus();
+					return false;
+				} else if ($('input[name=password]').val().length < 4) {
+					alert('비밀번호의 길이가 너무 짧습니다. \n4자 이상으로 변경하십시오.');
+					$('input[name=password]').focus();
+					return false;
+				} else if ($('input[name=password]').val().length > 12) {
+					alert('비밀번호는 최대 12자 까지 가능합니다.');
+					$('input[name=password]').focus();
+					return false;
+				} else if (!$('input[name=sex]').val()) {
+					alert('성별을 선택하십시오.');
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+			// 성별 체크
+			function checkSex(value) {
+				$("input[name='sex']").val(value);
+			}
+			
+			function checkEmailValueChange() {
+				$('input[name=emailCheck]').val('0');
+			}
+			function checknicknameValueChange() {
+				$('input[name=nicknameCheck]').val('0');
+			}
+        
+   		</script>
+        
+	    <style>
+	    	.packet_wrap{
+	    		width:100%;
+	    		padding-top:20px;
+	    		padding-bottom:20px;
+	    		background-color:white;
+	    	}
+	    	.packet_input_apply{
+	    		height:100%;
+	    		width:100%;
+	    		border:0;
+	    	}
+	
+	    	.packet_td_apply{
+	    		height:40px; 
+	    		border-bottom:1px solid #BDBDBD; 
+	    		padding-bottom:5px;    					
+	    		padding-top:5px;    					
+	    	}
+	    	.packet_td_apply_end{
+	    		height:40px; 
+	    		padding-bottom:5px;    					
+	    		padding-top:5px;    					
+	    	}
+	
+	    	.packet_td_apply_l{
+	    		height:40px; width:80%; 
+	    		border-bottom:1px solid #BDBDBD; 
+	    		padding-bottom:5px;    					
+	    		padding-top:5px;    					
+	    	}
+	    	.packet_td_apply_r{
+	    		height:40px; width:20%; 
+	    		border-bottom:1px solid #BDBDBD; padding-bottom:5px;    					
+	    		padding-top:5px;    					
+	    		padding-left:3px;    					
+	    	}
+	    </style>
+    </head>
+    <body>
+    	<form method="GET" name="userInformationMainForm" accept-charset="utf-8">
+    	<input type="hidden" name="emailCheck" value="0"/>
+    	<input type="hidden" name="nicknameCheck" value="0"/>
+    	<div data-role="page" style="height:100%; padding-top:70px;">
+
+    		<div class="packet_wrap">
+    			<table style="width:90%; margin:auto;">
+    				<tr>
+    					<td class="packet_td_apply_l">    					
+    						<input type="text" class="packet_input_apply" data-role="none" name="email" id="email" onchange="checkEmailValueChange()" placeholder="E-mail (가입 후 변경 불가)">
+    					</td>
+    					<td class="packet_td_apply_r">    					
+    						<button type="button" class="btn btn-sm" data-role="none" onclick="putUserEmailCheck()">중복확인</button>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">    					
+    						<input type="password" class="packet_input_apply" data-role="none" name="password" id="password" placeholder="Password (4~12자  이내)">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">    					
+    						<input type="password" class="packet_input_apply" data-role="none"  name="passwordCheck" id="passwordCheck" placeholder="Password 재입력">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td class="packet_td_apply_l">    					
+    						<input type="text" class="packet_input_apply" data-role="none" name="nickname" id="nickname" onchange="checknicknameValueChange()" placeholder="Nickname (가입 후 변경 불가)">
+    					</td>
+    					<td class="packet_td_apply_r">    					
+    						<button type="button" class="btn btn-sm" data-role="none" onclick="putUserNicknameCheck()">중복확인</button>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply">
+    					<input type="number" class="packet_input_apply" data-role="none" name="birth" id="birth" placeholder="Birthday (ex: 20170101)">
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2" class="packet_td_apply_end">    					
+    						<div data-role="navbar" style="margin-top:10px;">
+    							<input type="hidden"data-role="none" name="sex" value="">
+						      <ul>
+						        <li><a onclick="checkSex(1)">남자</a></li>
+						        <li><a onclick="checkSex(2)">여자</a></li>
+						      </ul>
+						  	</div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2">    					
+    						<button type="button" data-role="none" class="btn btn-block btn-success" style="margin-top:10px; heigth:40px;" onclick="putUserInformationMain()">다음으로</button>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td colspan="2">    					
+    						<button type="button" data-role="none" class="btn btn-block btn-success" style="margin-top:10px; heigth:40px;" onclick="moveHome()">메인으로</button>
+    					</td>
+    				</tr>
+    			</table>
+    		</div>
+			</div>
+		</form>
+	</body>
+</html>
+ 
